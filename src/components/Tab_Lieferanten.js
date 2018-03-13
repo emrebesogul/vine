@@ -3,9 +3,14 @@ import { Tab, Input, Button, List, Image } from 'semantic-ui-react'
 import './components.css';
 import avatar from "../assets/images/avatar.png";
 
+
 const panes = [
-  { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
+  { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
     <div>
+      <span className="input-label">Firma</span>
+      <Input  focus placeholder="Firma"/>
+    </div>
+    <div className="input-fields">
       <span className="input-label">Vorname</span>
       <Input  focus placeholder="Vorname"/>
       <span className="input-label-inline" >Nachname</span>
@@ -35,7 +40,7 @@ const panes = [
     </div>
 
   </Tab.Pane> },
-  { menuItem: 'Kundenliste', render: () => <Tab.Pane>
+  { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
     <List selection verticalAlign='middle' size="large">
      <List.Item>
        <List.Content floated="right">
