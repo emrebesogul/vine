@@ -1,0 +1,41 @@
+.input-label{
+  margin-right: 15px;
+    width: 130px !important;
+    display: block;
+    line-height: 35px;
+    float: left;
+    text-align: right;
+}
+
+.input-label-inline {
+  margin-left: 10px;
+  margin-right: 14px;
+  width: 85px;
+  display: inline-table;
+  text-align: right;
+}
+
+.input-fields{
+  margin-top: 30px;
+}
+
+.button-menu {
+  margin-right: 10px !important;
+  margin-top: 20px;
+}
+
+div.ui.segment.active.tab {
+  margin-top: -14px;
+}
+
+div.ui.bottom.attached.segment.active.tab {
+    border: none;
+    border-left: solid 1px rgb(160,160,160);
+    margin-top: 0px !important;
+    padding-left: 30px;
+}
+
+#button-save {
+  display: block;
+  float: right;
+}
