@@ -1,5 +1,5 @@
 .input-label{
-  margin-right: 15px;
+  margin-right: 20px;
     width: 130px !important;
     display: block;
     line-height: 35px;
@@ -19,9 +19,19 @@
   margin-top: 30px;
 }
 
+#search-lager{
+  float: left;
+  
+}
+
 .button-menu {
   margin-right: 10px !important;
-  margin-top: 20px;
+  margin-top: 15px !important;
+}
+
+.input-fields-inline{
+  display: inline-block;
+  margin-left: 20px;
 }
 
 div.ui.segment.active.tab {
@@ -35,7 +45,20 @@ div.ui.bottom.attached.segment.active.tab {
     padding-left: 30px;
 }
 
-#button-save {
-  display: block;
-  float: right;
+#button-cancel-kunde{
+  margin-left: 20px;
+}
+
+#button-cancel-lager{
+  margin-left: 20px;
+}
+
+#button-save-kunde {
+  margin-left: 9px;
+  display: block-inline;
+}
+
+#button-save-lager {
+  margin-left: 9px;
+  display: block-inline;
 }

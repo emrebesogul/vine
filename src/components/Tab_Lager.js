@@ -1,29 +1,41 @@
 import React from 'react'
-import { Tab, Input, Button, Image, List } from 'semantic-ui-react'
+import { Tab, Input, Button, Image, List, Form } from 'semantic-ui-react'
 import './components.css';
 import wineImage from '../assets/images/wine-bottle.png'
 
+
 const panes = [
-  { menuItem: 'Wein anlegen', render: () => <Tab.Pane>
-    <div className="">
-      <span className="input-label">Name des Weins</span>
-      <Input className="input-text" focus placeholder="Name des Weins.."/>
-    </div>
-    <div className="input-fields">
-      <span className="input-label">Jahrgang des Weins</span>
-      <Input className="input-text" focus placeholder="Jahrgang des Weins.."/>
-    </div>
-    <div className="input-fields">
-      <span className="input-label">Herkunft des Weins</span>
-      <Input className="input-text" focus placeholder="Herkunft des Weins.."/>
-    </div>
-    <div className="input-fields">
-      <Button align="right" className="button-menu">Abbrechen</Button>
-      <Button id="button-save" className="button-menu">Speichern</Button>
-    </div>
+  { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
+    <Form>
+      <div className="">
+        <span className="input-label">Produkttitel</span>
+        <Input className="input-text" focus placeholder="Produkttitel"/>
+      </div>
+      <div className="input-fields">
+        <span className="input-label">Produktionsjahr</span>
+        <Input className="input-text" focus placeholder="Produktionsjahr"/>
+      </div>
+      <div className="input-fields">
+        <span className="input-label">Produktherkunft</span>
+        <Input className="input-text" focus placeholder="Produktherkunft"/>
+      </div>
+      <div className="input-fields">
+        <Button id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
+        <Button id="button-save-lager" className="button-menu">Speichern</Button>
+      </div>
+    </Form>
+
   </Tab.Pane> },
   { menuItem: 'Lagerbestand', render: () => <Tab.Pane>
-    <List selection verticalAlign='middle' size="large">
+    <div class="ui search">
+      <div class="ui icon input">
+        <input id="search-lager" class="prompt" type="text" placeholder="Nach Produkten suchen..."/>
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>
+
+    <List divided relaxed selection verticalAlign='middle' size="large">
      <List.Item>
        <List.Content floated="right">
          <Button circular="true" icon="edit"></Button>
@@ -32,6 +44,8 @@ const panes = [
        <Image avatar src={wineImage} />
        <List.Content>
          <List.Header>Spätburgunder</List.Header>
+           <List.Description as='a'>Art. Nr. 10209123</List.Description>
+           <List.Description as='a'>10.99€</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
@@ -42,6 +56,8 @@ const panes = [
        <Image avatar src={wineImage} />
        <List.Content>
          <List.Header>Metzinger Weinsteige</List.Header>
+           <List.Description as='a'>Art. Nr. 10409123</List.Description>
+           <List.Description as='a'>16.99€</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
@@ -52,6 +68,8 @@ const panes = [
        <Image avatar src={wineImage} />
        <List.Content>
          <List.Header>Trocken</List.Header>
+           <List.Description as='a'>Art. Nr. 10219123</List.Description>
+           <List.Description as='a'>5.99€</List.Description>
        </List.Content>
      </List.Item>
    </List>

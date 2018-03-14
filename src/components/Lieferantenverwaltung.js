@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'semantic-ui-react';
 import './components.css';
-import TabLieferant from './Tab_Lieferanten.js';
+import TabLieferant from '../components/Tab_Lieferanten.js';
 
 class Lagerverwaltung extends Component {
   render() {

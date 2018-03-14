@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tab, Input, Button, List, Image } from 'semantic-ui-react'
 import './components.css';
-import avatar from "../assets/images/avatar.png";
+import avatar from "../assets/images/avatar.png"
 
 const panes = [
   { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
@@ -30,8 +30,8 @@ const panes = [
       <Input className="input-text" focus placeholder="Telefonnummer"/>
     </div>
     <div className="input-fields">
-      <Button align="right" className="button-menu">Abbrechen</Button>
-      <Button id="button-save" className="button-menu">Speichern</Button>
+      <Button id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+      <Button id="button-save-kunde" className="button-menu">Speichern</Button>
     </div>
 
   </Tab.Pane> },

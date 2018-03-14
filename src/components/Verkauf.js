@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './components.css';
-import TabVerkauf from './Tab_Verkauf.js';
+import TabVerkauf from '../components/Tab_Verkauf.js';
 
 class Lagerverwaltung extends Component {
   render() {

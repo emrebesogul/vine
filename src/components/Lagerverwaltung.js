@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TabLager from './Tab_Lager.js';
+import TabLager from '../components/Tab_Lager.js';
 import './components.css';
 
 class Lagerverwaltung extends Component {
