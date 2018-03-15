@@ -45,6 +45,7 @@ const panes = [
        <Image avatar src={avatar} />
        <List.Content>
          <List.Header>Bill Gates</List.Header>
+         <List.Description as='a'>Kundennr: 123</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
@@ -55,6 +56,7 @@ const panes = [
        <Image avatar src={avatar} />
        <List.Content>
          <List.Header>Elon Musk</List.Header>
+         <List.Description as='a'>Kundennr: 124</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
@@ -65,11 +67,11 @@ const panes = [
        <Image avatar src={avatar} />
        <List.Content>
          <List.Header>Arnold Schwarzenegger</List.Header>
+         <List.Description as='a'>Kundennr: 125</List.Description>
        </List.Content>
      </List.Item>
    </List>
   </Tab.Pane> },
-  { menuItem: 'Drucken', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
 ]
 
 const TabExampleVerticalTrue = () => (

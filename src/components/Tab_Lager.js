@@ -38,37 +38,40 @@ const panes = [
     <List divided relaxed selection verticalAlign='middle' size="large">
      <List.Item>
        <List.Content floated="right">
-         <Button circular="true" icon="edit"></Button>
-         <Button circular="true" icon="remove"></Button>
+         <Button className="large-button" size="large" circular="true" icon="edit"></Button>
+         <Button className="large-button" size="large" circular="true" icon="remove"></Button>
        </List.Content>
        <Image avatar src={wineImage} />
        <List.Content>
          <List.Header>Spätburgunder</List.Header>
            <List.Description as='a'>Art. Nr. 10209123</List.Description>
+           <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
            <List.Description as='a'>10.99€</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
        <List.Content floated="right">
-         <Button circular="true" icon="edit"></Button>
-         <Button circular="true" icon="remove"></Button>
+         <Button className="large-button" size="large" circular="true" icon="edit"></Button>
+         <Button className="large-button" size="large" circular="true" icon="remove"></Button>
        </List.Content>
        <Image avatar src={wineImage} />
        <List.Content>
          <List.Header>Metzinger Weinsteige</List.Header>
            <List.Description as='a'>Art. Nr. 10409123</List.Description>
+          <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
            <List.Description as='a'>16.99€</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
        <List.Content floated="right">
-         <Button circular="true" icon="edit"></Button>
-         <Button circular="true" icon="remove"></Button>
+         <Button className="large-button" size="large" circular="true" icon="edit"></Button>
+         <Button className="large-button" size="large" circular="true" icon="remove"></Button>
        </List.Content>
        <Image avatar src={wineImage} />
        <List.Content>
          <List.Header>Trocken</List.Header>
            <List.Description as='a'>Art. Nr. 10219123</List.Description>
+            <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
            <List.Description as='a'>5.99€</List.Description>
        </List.Content>
      </List.Item>

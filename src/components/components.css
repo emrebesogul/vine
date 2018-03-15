@@ -15,13 +15,30 @@
   text-align: right;
 }
 
+.large-button{
+  margin-top: 10px !important;
+}
+
 .input-fields{
   margin-top: 30px;
 }
 
+.print-sale-button{
+  clear: both;
+  margin-top: 20px !important;
+}
+
+.print-sale-button::after {
+  margin-bottom: 20px;
+}
+
+#sales-button{
+  margin-top: 25px;
+  margin-left: 45px;
+}
+
 #search-lager{
   float: left;
-  
 }
 
 .button-menu {
