@@ -10,7 +10,10 @@ class App extends Component {
         <div id="header">
           <Header as='h2' icon className="title-menu">
             <Icon name='settings' />
-            Verwaltung und Einstellungen
+            Weinhandlung Semsakrebsler
+              <Header.Subheader id="Subheader">
+                Verwalten Sie Lagerbestände, Kunden- und Lieferantendaten, sowie die Verkäufe.
+              </Header.Subheader>
           </Header>
         </div>
         <div id="content">

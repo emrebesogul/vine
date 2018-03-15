@@ -36,7 +36,7 @@ const panes = [
 
   </Tab.Pane> },
   { menuItem: 'Kundenliste', render: () => <Tab.Pane>
-    <List selection verticalAlign='middle' size="large">
+    <List divided relaxed selection verticalAlign='middle' size="large">
      <List.Item>
        <List.Content floated="right">
          <Button circular="true" icon="edit"></Button>

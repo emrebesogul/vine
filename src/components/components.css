@@ -16,7 +16,7 @@
 }
 
 .large-button{
-  margin-top: 10px !important;
+  margin-top: 13px !important;
 }
 
 .input-fields{
@@ -57,7 +57,7 @@ div.ui.segment.active.tab {
 
 div.ui.bottom.attached.segment.active.tab {
     border: none;
-    border-left: solid 1px rgb(160,160,160);
+    border-left: solid 1px rgb(210,210,210);
     margin-top: 0px !important;
     padding-left: 30px;
 }

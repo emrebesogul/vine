@@ -16,7 +16,7 @@ const panes = [
       <List divided relaxed selection verticalAlign='middle' size="large">
        <List.Item>
          <List.Content floated="right">
-           <Button className="large-button" circular="true" size="large" icon="remove"></Button>
+           <Button className="large-button" circular="true"  icon="remove"></Button>
          </List.Content>
          <Image avatar src={wineImage} />
          <List.Content>
@@ -28,7 +28,7 @@ const panes = [
        </List.Item>
        <List.Item>
          <List.Content floated="right">
-           <Button className="large-button" circular="true" size="large" icon="remove"></Button>
+           <Button className="large-button" circular="true" icon="remove"></Button>
          </List.Content>
          <Image avatar src={wineImage} />
          <List.Content>
