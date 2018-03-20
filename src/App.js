@@ -9,8 +9,8 @@ class App extends Component {
       <div className="App">
         <div id="header">
           <Header as='h2' icon className="title-menu">
-            <Icon name='settings' />
-            Weinhandlung Semsakrebsler
+            <Icon name="home" />
+            <span id="title">Weinhandlung Semsakrebsler</span>
               <Header.Subheader id="Subheader">
                 Verwalten Sie Lagerbestände, Kunden- und Lieferantendaten, sowie die Verkäufe.
               </Header.Subheader>

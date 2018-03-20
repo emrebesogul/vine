@@ -12,7 +12,7 @@ const panes = [
       <Input className="input-text" focus placeholder="Nachname"/>
     </div>
     <div className="input-fields">
-      <span className="input-label">Adresse</span>
+      <span className="input-label">Straße und Hausnr.</span>
       <Input className="input-text" focus placeholder="Adresse"/>
     </div>
     <div className="input-fields">
@@ -45,7 +45,7 @@ const panes = [
        <Image avatar src={avatar} />
        <List.Content>
          <List.Header>Bill Gates</List.Header>
-         <List.Description as='a'>Kundennr: 123</List.Description>
+         <List.Description as='a'>Reutlingen, DE</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
@@ -56,7 +56,7 @@ const panes = [
        <Image avatar src={avatar} />
        <List.Content>
          <List.Header>Elon Musk</List.Header>
-         <List.Description as='a'>Kundennr: 124</List.Description>
+         <List.Description as='a'>Marseille, FR</List.Description>
        </List.Content>
      </List.Item>
      <List.Item>
@@ -67,7 +67,7 @@ const panes = [
        <Image avatar src={avatar} />
        <List.Content>
          <List.Header>Arnold Schwarzenegger</List.Header>
-         <List.Description as='a'>Kundennr: 125</List.Description>
+         <List.Description as='a'>Saarland, DE</List.Description>
        </List.Content>
      </List.Item>
    </List>

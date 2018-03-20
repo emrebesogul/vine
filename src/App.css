@@ -1,18 +1,21 @@
 #header {
   width: 100%;
-  height: 150px;
-  background: rgb(238,238,238);
+  height: 147px;
+  border-bottom: solid 2px rgb(40,40,40);
+  background: rgb(118, 27, 27);
 }
 
 #Subheader{
   padding: 3px;
+  color: rgb(246,246,246);
 }
 
 h2.ui.icon.header {
-  padding-top:  10px !important;
+  padding-top:  5px !important;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  color: rgb(246,246,246);
 }
 
 div.ui.segment.active.tab {

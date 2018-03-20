@@ -15,8 +15,20 @@
   text-align: right;
 }
 
+div.four.wide.column{
+  margin-left: -15px !important;
+  width: 20% !important;
+}
+
+.modal-wrapper{
+
+  background: rgba(40,40,40, 0.3);
+  width: 100vw;
+  height: 100vh;
+}
+
 .large-button{
-  margin-top: 13px !important;
+  margin-top: 17px !important;
 }
 
 .input-fields{
