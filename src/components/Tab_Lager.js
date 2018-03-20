@@ -7,29 +7,30 @@ import wineImage from '../assets/images/wine-bottle.png'
 const panes = [
   { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
     <Form>
+      <h2 className="head-label">Neues Produkt anlegen</h2>
       <div className="">
         <span className="input-label">Produkttitel</span>
-        <Input className="input-text" focus placeholder="Produkttitel"/>
+        <Input className="input-text"  placeholder="Produkttitel"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Produktionsjahr</span>
-        <Input className="input-text" focus placeholder="Produktionsjahr"/>
+        <Input className="input-text"  placeholder="Produktionsjahr"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Produktherkunft</span>
-        <Input className="input-text" focus placeholder="Produktherkunft"/>
+        <Input className="input-text"  placeholder="Produktherkunft"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Anzahl</span>
-        <Input className="input-text" focus placeholder="Anzahl"/>
+        <Input className="input-text"  placeholder="Anzahl"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Einkaufspreis</span>
-        <Input className="input-text" focus placeholder="Einkaufspreis"/>
+        <Input className="input-text"  placeholder="Einkaufspreis"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Verkaufspreis</span>
-        <Input className="input-text" focus placeholder="Verkaufspreis"/>
+        <Input className="input-text"  placeholder="Verkaufspreis"/>
       </div>
       <div className="input-fields">
         <Button id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
@@ -39,7 +40,7 @@ const panes = [
 
   </Tab.Pane> },
   { menuItem: 'Lagerbestand', render: () => <Tab.Pane>
-
+    <h2 className="head-label">Aktuelle Lagerbestände anzeigen</h2>
     <div class="ui search">
       <div class="ui icon input">
         <input id="search-lager" class="prompt" type="text" placeholder="Nach Produkten suchen..."/>
@@ -98,9 +99,6 @@ const panes = [
        </List.Content>
      </List.Item>
    </List>
-  </Tab.Pane> },
-  { menuItem: 'Quittung drucken', render: () => <Tab.Pane>
-    <img alt="" src="https://c.s-microsoft.com/de-de/CMSImages/Windows_Homepage_4Up_AllinOne_1920.jpg?version=04a0f379-f5f8-50eb-88db-ba512f505d82"/>
   </Tab.Pane> },
 
 ]

@@ -4,6 +4,7 @@
     display: block;
     line-height: 35px;
     float: left;
+    margin-left: -5px;
     text-align: right;
 }
 
@@ -13,6 +14,13 @@
   width: 85px;
   display: inline-table;
   text-align: right;
+}
+
+.head-label{
+  margin-left: 5px;
+  margin-bottom: 35px;
+  border-bottom: solid 1px black;
+  width: auto;
 }
 
 div.four.wide.column{
@@ -75,7 +83,7 @@ div.ui.bottom.attached.segment.active.tab {
 }
 
 #button-cancel-kunde{
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 #button-cancel-lager{
@@ -83,7 +91,7 @@ div.ui.bottom.attached.segment.active.tab {
 }
 
 #button-save-kunde {
-  margin-left: 9px;
+  margin-left: 13px;
   display: block-inline;
 }
 

@@ -5,33 +5,34 @@ import avatar from "../assets/images/avatar.png";
 
   const panes = [
     { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
+      <h2 className="head-label">Neuen Lieferanten anlegen</h2>
       <div>
         <span className="input-label">Firma</span>
-        <Input  focus placeholder="Firma"/>
+        <Input  placeholder="Firma"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Vorname</span>
-        <Input  focus placeholder="Vorname"/>
+        <Input   placeholder="Vorname"/>
         <span className="input-label-inline" >Nachname</span>
-        <Input className="input-text" focus placeholder="Nachname"/>
+        <Input className="input-text"  placeholder="Nachname"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Straße und Hausnr.</span>
-        <Input className="input-text" focus placeholder="Adresse"/>
+        <Input className="input-text"  placeholder="Adresse"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Postleitzahl</span>
-        <Input focus placeholder="Postleitzahl"/>
+        <Input  placeholder="Postleitzahl"/>
           <span className="input-label-inline" >Ort</span>
-          <Input className="input-text" focus placeholder="Ort"/>
+          <Input className="input-text"  placeholder="Ort"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Land</span>
-        <Input className="input-text" focus placeholder="Land"/>
+        <Input className="input-text"  placeholder="Land"/>
       </div>
       <div className="input-fields">
         <span className="input-label">Telefonnummer</span>
-        <Input className="input-text" focus placeholder="Telefonnummer"/>
+        <Input className="input-text"  placeholder="Telefonnummer"/>
       </div>
       <div className="input-fields">
         <Button id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
@@ -40,8 +41,8 @@ import avatar from "../assets/images/avatar.png";
 
     </Tab.Pane> },
     { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
+      <h2 className="head-label">Alle Lieferanten anzeigen</h2>
       <List divided relaxed selection verticalAlign='middle' size="large">
-
        <List.Item>
          <List.Content floated="right">
            <Button circular="true" icon="euro sign"></Button>
