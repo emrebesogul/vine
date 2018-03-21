@@ -3,13 +3,9 @@ import { Tab, Icon } from 'semantic-ui-react';
 import Lagerverwaltung from './Lagerverwaltung.js';
 import Kundenverwaltung from './Kundenverwaltung.js';
 import Lieferantenverwaltung from './Lieferantenverwaltung.js';
-import Verkauf from './Verkauf.js';
 
 
 const panes = [
-  { menuItem: "Verkauf", render: () => <Tab.Pane attached={false}>
-  <Verkauf />
-  </Tab.Pane> },
   { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
   <Kundenverwaltung />
   </Tab.Pane> },
