@@ -2,6 +2,7 @@ import React from 'react'
 import { Tab, Input, Button, List, Image } from 'semantic-ui-react'
 import './components.css';
 import avatar from "../assets/images/avatar.png"
+import {Link } from "react-router-dom";
 
 const panes = [
   { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
@@ -46,7 +47,8 @@ const panes = [
        </List.Content>
        <Image avatar src={avatar} />
        <List.Content>
-         <List.Header>Bill Gates</List.Header>
+         <Link to="/kunde/details">
+         <List.Header>Bill Gates</List.Header></Link>
          <List.Description as='a'>Reutlingen, DE</List.Description>
        </List.Content>
      </List.Item>

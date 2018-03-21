@@ -29,7 +29,6 @@ div.four.wide.column{
 }
 
 .modal-wrapper{
-
   background: rgba(40,40,40, 0.3);
   width: 100vw;
   height: 100vh;
@@ -87,15 +86,15 @@ div.ui.bottom.attached.segment.active.tab {
 }
 
 #button-cancel-lager{
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 #button-save-kunde {
-  margin-left: 13px;
+  margin-left: 15px;
   display: block-inline;
 }
 
 #button-save-lager {
-  margin-left: 9px;
+  margin-left: 14px;
   display: block-inline;
 }

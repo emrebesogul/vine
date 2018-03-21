@@ -5,6 +5,7 @@ import Kundenverwaltung from './Kundenverwaltung.js';
 import Lieferantenverwaltung from './Lieferantenverwaltung.js';
 import Verkauf from './Verkauf.js';
 
+
 const panes = [
   { menuItem: "Verkauf", render: () => <Tab.Pane attached={false}>
   <Verkauf />

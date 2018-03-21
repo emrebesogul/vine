@@ -2,25 +2,24 @@ import React, { Component } from 'react';
 import Tab from './components/Tab.js'
 import { Header, Icon } from 'semantic-ui-react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import LagerDetails from './components/Lager_Detail'
+import Home from './components/Home'
+import KundenDetails from './components/Kunden_Detail'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div id="header">
-          <Header as='h2' icon className="title-menu">
-            <Icon name="home" />
-            <span id="title">Weinhandlung Semsakrebsler</span>
-              <Header.Subheader id="Subheader">
-                Verwalten Sie Lagerbestände, Kunden- und Lieferantendaten, sowie die Verkäufe.
-              </Header.Subheader>
-          </Header>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/lager/details' component={LagerDetails} />
+            <Route exact path='/kunde/details' component={KundenDetails} />
+          </Switch>
         </div>
-        <div id="content">
-          <Tab />
 
-        </div>
-      </div>
+    </Router>
     );
   }
 }
