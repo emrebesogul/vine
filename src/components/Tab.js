@@ -24,6 +24,7 @@ class Home extends React.Component{
       this.state = {
           productData: [],
           supplierData: [],
+          activeIndexClients: 1,
           activeIndexProducts: 1,
           activeIndexSuppliers: 1   
       }
@@ -106,8 +107,13 @@ class Home extends React.Component{
   }
 
   handleTabChangeMenu(e, data) {
-      this.setState({activeIndexProducts: 0});
-      this.setState({activeIndexSuppliers: 0});
+      this.setState({activeIndexClients: 1});
+      this.setState({activeIndexProducts: 1});
+      this.setState({activeIndexSuppliers: 1});
+  }
+
+  handleTabChangeClients(e, data) {
+      this.setState({activeIndexClients: data.activeIndex});
   }
 
   handleTabChangeProducts(e, data) {
@@ -125,7 +131,7 @@ class Home extends React.Component{
         <Tab onTabChange={this.handleTabChangeMenu.bind(this)} menu={{ secondary: true, pointing: true }} panes={
           [
            { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
-           <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+           <Tab onTabChange={this.handleTabChangeClients.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
                [
                  { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
                    <div>
@@ -183,7 +189,7 @@ class Home extends React.Component{
                      })}
                  </Tab.Pane> },
                ]
-               } activeIndex={1} />
+               } activeIndex={this.state.activeIndexClients} />
            </Tab.Pane> },
            { menuItem: 'Lieferanten- und Winzerverwaltung', render: () => <Tab.Pane attached={false}>
            <Tab onTabChange={this.handleTabChangeSuppliers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
