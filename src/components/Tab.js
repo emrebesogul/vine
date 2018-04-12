@@ -5,12 +5,10 @@ import wineImage from '../assets/images/wine-bottle.png'
 import {Link } from "react-router-dom";
 import './components.css';
 
+var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+
 class Home extends React.Component{
-
-
-    createProduct() {
-        
-    }
 
 
   render(){
@@ -54,42 +52,26 @@ class Home extends React.Component{
                  </Tab.Pane> },
                  { menuItem: 'Kundenliste', render: () => <Tab.Pane>
                    <h2 className="head-label">Alle Kunden anzeigen</h2>
-                   <List divided relaxed selection verticalAlign='middle' size="large">
-                    <List.Item>
-                      <List.Content floated="right">
-                        <Button circular="true" icon="edit"></Button>
-                        <Button circular="true" icon="remove"></Button>
-                      </List.Content>
-                      <Image avatar src={avatar} />
-                      <List.Content>
-                        <Link to="/kunde/details">
-                        <List.Header>Bill Gates</List.Header></Link>
-                        <List.Description as='a'>Reutlingen, DE</List.Description>
-                      </List.Content>
-                    </List.Item>
-                    <List.Item>
-                      <List.Content floated="right">
-                        <Button circular="true" icon="edit"></Button>
-                        <Button circular="true" icon="remove"></Button>
-                      </List.Content>
-                      <Image avatar src={avatar} />
-                      <List.Content>
-                        <List.Header>Elon Musk</List.Header>
-                        <List.Description as='a'>Marseille, FR</List.Description>
-                      </List.Content>
-                    </List.Item>
-                    <List.Item>
-                      <List.Content floated="right">
-                        <Button circular="true" icon="edit"></Button>
-                        <Button circular="true" icon="remove"></Button>
-                      </List.Content>
-                      <Image avatar src={avatar} />
-                      <List.Content>
-                        <List.Header>Arnold Schwarzenegger</List.Header>
-                        <List.Description as='a'>Saarland, DE</List.Description>
-                      </List.Content>
-                    </List.Item>
-                  </List>
+                     {customers.map((item, index) => {
+                       return(
+                         <div>
+                          <List divided relaxed selection verticalAlign='middle' size="large">
+                           <List.Item>
+                             <List.Content floated="right">
+                               <Button circular="true" icon="edit"></Button>
+                               <Button circular="true" icon="remove"></Button>
+                             </List.Content>
+                             <Image avatar src={avatar} />
+                             <List.Content>
+                               <Link to="/kunde/details">
+                               <List.Header>{item.name}</List.Header></Link>
+                               <List.Description as='a'>{item.address}</List.Description>
+                             </List.Content>
+                           </List.Item>
+                         </List>
+                       </div>
+                       )
+                     })}
                  </Tab.Pane> },
                ]
                } defaultActiveIndex={1} />
@@ -135,44 +117,26 @@ class Home extends React.Component{
                </Tab.Pane> },
                { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
                  <h2 className="head-label">Alle Lieferanten anzeigen</h2>
-                 <List divided relaxed selection verticalAlign='middle' size="large">
-                  <List.Item>
-                    <List.Content floated="right">
-                      <Button circular="true" icon="euro sign"></Button>
-                      <Button circular="true" icon="edit"></Button>
-                      <Button circular="true" icon="remove"></Button>
-                    </List.Content>
-                    <Image avatar src={avatar} />
-                    <List.Content>
-                      <List.Header>Bill Gates</List.Header>
-                      <List.Description as='a'>Reutlingen, DE</List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Content floated="right">
-                       <Button circular="true" icon="euro sign"></Button>
-                      <Button circular="true" icon="edit"></Button>
-                      <Button circular="true" icon="remove"></Button>
-                    </List.Content>
-                    <Image avatar src={avatar} />
-                    <List.Content>
-                      <List.Header>Elon Musk</List.Header>
-                      <List.Description as='a'>Marseille, FR</List.Description>
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    <List.Content floated="right">
-                      <Button circular="true" icon="euro sign"></Button>
-                      <Button circular="true" icon="edit"></Button>
-                      <Button circular="true" icon="remove"></Button>
-                    </List.Content>
-                    <Image avatar src={avatar} />
-                    <List.Content>
-                      <List.Header>Arnold Schwarzenegger</List.Header>
-                      <List.Description as='a'>Saarland, DE</List.Description>
-                    </List.Content>
-                  </List.Item>
-                </List>
+                 {
+                   supplier.map((item, index) =>{
+                     return(
+                       <List divided relaxed selection verticalAlign='middle' size="large">
+                        <List.Item>
+                          <List.Content floated="right">
+                            <Button circular="true" icon="euro sign"></Button>
+                            <Button circular="true" icon="edit"></Button>
+                            <Button circular="true" icon="remove"></Button>
+                          </List.Content>
+                          <Image avatar src={avatar} />
+                          <List.Content>
+                            <List.Header>{item.name}</List.Header>
+                            <List.Description as='a'>{item.address}</List.Description>
+                          </List.Content>
+                        </List.Item>
+                      </List>
+                     )
+                   })}
+
                </Tab.Pane> },
              ]
                } defaultActiveIndex={1} />
