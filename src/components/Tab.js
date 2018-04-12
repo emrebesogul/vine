@@ -4,8 +4,8 @@ import avatar from "../assets/images/avatar.png"
 import wineImage from '../assets/images/wine-bottle.png'
 import {Link } from "react-router-dom";
 import './components.css';
-import { getProducts, getSuppliers } from '../API/GET/GetMethods';
-import { createProduct, createSupplier, deleteProduct, deleteSupplier } from '../API/POST/PostMethods';
+import { getCustomers, getProducts, getSuppliers } from '../API/GET/GetMethods';
+import { createCustomer, createProduct, createSupplier, deleteCustomer, deleteProduct, deleteSupplier } from '../API/POST/PostMethods';
 
 // var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
 // var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
@@ -24,13 +24,20 @@ class Home extends React.Component{
       this.state = {
           productData: [],
           supplierData: [],
-          activeIndexClients: 1,
+          customerData: [],
+          activeIndexCustomers: 1,
           activeIndexProducts: 1,
           activeIndexSuppliers: 1   
       }
-      this.getSupplierData();
+      this.getCustomerData();
       this.getProductData();
+      this.getSupplierData();
   } 
+
+  async getCustomerData() {
+      const customerData = await getCustomers();
+      this.setState({customerData: customerData});
+  }
   
   async getProductData() {
       const productData = await getProducts();
@@ -40,6 +47,13 @@ class Home extends React.Component{
   async getSupplierData() {
       const supplierData = await getSuppliers();
       this.setState({supplierData: supplierData});
+  }
+
+  async handleDeleteCustomer(event, data) {
+      const response = await deleteCustomer(data._id);
+      if(response) {
+          this.getCustomerData();
+      }
   }
 
   async handleDeleteProduct(event, data) {
@@ -56,17 +70,38 @@ class Home extends React.Component{
       }
   }
 
+  async handleCreateCustomer(event) {
+    event.preventDefault();
+
+    const customerData = {
+      "firstName" : event.target[0].value,
+      "lastName" : event.target[1].value,
+      "street" : event.target[2].value,
+      "postcode" : event.target[3].value,
+      "city" : event.target[4].value,
+      "country" : event.target[5].value,
+      "phoneNumber" : event.target[6].value
+    }
+    console.log("zs")
+    const response = await createCustomer(customerData);
+
+    if(response) {
+        this.getCustomerData();
+        this.setState({activeIndexCustomers: 1});
+    }
+}
+
   async handleCreateProduct(event) {
       event.preventDefault();
 
       const productData = {
-          "title" : event.target[0].value,
-          "year" : event.target[1].value,
-          "origin" : event.target[2].value,
-          "quantity" : event.target[3].value,
-          "buyingPrice" : event.target[4].value,
-          "salePrice" : event.target[5].value,
-      }
+        "title" : event.target[0].value,
+        "year" : event.target[1].value,
+        "origin" : event.target[2].value,
+        "quantity" : event.target[3].value,
+        "buyingPrice" : event.target[4].value,
+        "salePrice" : event.target[5].value,
+    }
 
       const response = await createProduct(productData);
 
@@ -98,6 +133,10 @@ class Home extends React.Component{
       } 
   }
 
+  handleCancelCreateCustomer(event) {
+      this.setState({activeIndexCustomers: 1});
+  }
+
   handleCancelCreateProduct(event) {
       this.setState({activeIndexProducts: 1});
   }
@@ -107,13 +146,13 @@ class Home extends React.Component{
   }
 
   handleTabChangeMenu(e, data) {
-      this.setState({activeIndexClients: 1});
+      this.setState({activeIndexCustomers: 1});
       this.setState({activeIndexProducts: 1});
       this.setState({activeIndexSuppliers: 1});
   }
 
-  handleTabChangeClients(e, data) {
-      this.setState({activeIndexClients: data.activeIndex});
+  handleTabChangeCustomers(e, data) {
+      this.setState({activeIndexCustomers: data.activeIndex});
   }
 
   handleTabChangeProducts(e, data) {
@@ -125,45 +164,48 @@ class Home extends React.Component{
   }
 
   render(){
+    customers = this.state.customerData;
     products = this.state.productData;
     supplier = this.state.supplierData;
     return(
         <Tab onTabChange={this.handleTabChangeMenu.bind(this)} menu={{ secondary: true, pointing: true }} panes={
           [
            { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
-           <Tab onTabChange={this.handleTabChangeClients.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+           <Tab onTabChange={this.handleTabChangeCustomers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
                [
                  { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
-                   <div>
-                     <h2 className="head-label">Neuen Kunden anlegen</h2>
-                     <span className="input-label">Vorname</span>
-                     <Input  placeholder="Vorname"/>
-                     <span className="input-label-inline" >Nachname</span>
-                     <Input className="input-text"  placeholder="Nachname"/>
-                   </div>
-                   <div className="input-fields">
-                     <span className="input-label">Straße und Hausnr.</span>
-                     <Input className="input-text"  placeholder="Adresse"/>
-                   </div>
-                   <div className="input-fields">
-                     <span className="input-label">Postleitzahl</span>
-                     <Input placeholder="Postleitzahl"/>
-                       <span className="input-label-inline" >Ort</span>
-                       <Input className="input-text"  placeholder="Ort"/>
-                   </div>
-                   <div className="input-fields">
-                     <span className="input-label">Land</span>
-                     <Input className="input-text"  placeholder="Land"/>
-                   </div>
-                   <div className="input-fields">
-                     <span className="input-label">Telefonnummer</span>
-                     <Input className="input-text"  placeholder="Telefonnummer"/>
-                   </div>
-                   <div className="input-fields">
-                     <Button id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                     <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                   </div>
-
+                   
+                    <h2 className="head-label">Neuen Kunden anlegen</h2>
+                    <Form onSubmit={this.handleCreateCustomer.bind(this)}>
+                      <div>
+                        <span className="input-label">Vorname</span>
+                        <Input  placeholder="Vorname"/>
+                        <span className="input-label-inline" >Nachname</span>
+                        <Input className="input-text"  placeholder="Nachname"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Straße und Hausnr.</span>
+                        <Input className="input-text"  placeholder="Adresse"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Postleitzahl</span>
+                        <Input placeholder="Postleitzahl"/>
+                          <span className="input-label-inline" >Ort</span>
+                          <Input className="input-text"  placeholder="Ort"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Land</span>
+                        <Input className="input-text"  placeholder="Land"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Telefonnummer</span>
+                        <Input className="input-text"  placeholder="Telefonnummer"/>
+                      </div>
+                      <div className="input-fields">
+                        <Button type = "reset" onClick={((e) => this.handleCancelCreateCustomer(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+                        <Button id="button-save-kunde" className="button-menu">Speichern</Button>
+                      </div>
+                   </Form>
                  </Tab.Pane> },
                  { menuItem: 'Kundenliste', render: () => <Tab.Pane>
                    <h2 className="head-label">Alle Kunden anzeigen</h2>
@@ -174,13 +216,13 @@ class Home extends React.Component{
                            <List.Item>
                              <List.Content floated="right">
                                <Button circular="true" icon="edit"></Button>
-                               <Button circular="true" icon="remove"></Button>
+                               <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular="true" icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={avatar} />
                              <List.Content>
                                <Link to="/kunde/details">
-                               <List.Header>{item.name}</List.Header></Link>
-                               <List.Description as='a'>{item.address}</List.Description>
+                               <List.Header>{item.firstName} {item.lastName}</List.Header></Link>
+                               <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description>
                              </List.Content>
                            </List.Item>
                          </List>
@@ -189,7 +231,7 @@ class Home extends React.Component{
                      })}
                  </Tab.Pane> },
                ]
-               } activeIndex={this.state.activeIndexClients} />
+               } activeIndex={this.state.activeIndexCustomers} />
            </Tab.Pane> },
            { menuItem: 'Lieferanten- und Winzerverwaltung', render: () => <Tab.Pane attached={false}>
            <Tab onTabChange={this.handleTabChangeSuppliers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
@@ -318,9 +360,11 @@ class Home extends React.Component{
                              <List.Content>
                                <Link to="/lager/details">
                                <List.Header>{item.title}</List.Header></Link>
-                                <List.Description as='a'>Auf Lager: {item.quantity}</List.Description>
-                                <List.Description as='a'>{item.origin}</List.Description>
-                                <List.Description as='a'>{item.year}</List.Description>
+                               <List.Description as='a'>
+                                  {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }
+                               </List.Description>
+                               <List.Description as='a'>{item.origin}</List.Description>
+                               <List.Description as='a'>{item.year}</List.Description>
                              </List.Content>
                            </List.Item>
                         </List>

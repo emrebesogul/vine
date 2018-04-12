@@ -3,6 +3,24 @@ import $ from 'jquery';
 var getUrl = window.location;
 var url = getUrl.protocol + "//" + getUrl.hostname + ":8000/rest";
 
+export const createCustomer = (customerData) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/customer/create",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({customerData: customerData}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
 export const createProduct = (productData) => {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -29,6 +47,24 @@ export const createSupplier = (supplierData) => {
           cache: false,
           contentType: 'application/json',
           data: JSON.stringify({supplierData: supplierData}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
+export const deleteCustomer = (customerId) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/customer/delete",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({customerId: customerId}),
           success: function(res) {
               resolve(res);
           },
