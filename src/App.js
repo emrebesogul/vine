@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Tab from './components/Tab.js'
-import { Header, Icon } from 'semantic-ui-react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LagerDetails from './components/Lager_Detail'
 import Home from './components/Home'
 import KundenDetails from './components/Kunden_Detail'

@@ -35,14 +35,38 @@ MongoClient.connect(url, function(err, client) {
         console.log("Successfully connected to MongoDB");
         app.use(bodyParser.json());
 
-        /* Calls the method listProducts that returns all products to the react application */
+        /* Calls the method listProducts that returns all products to the react application. */
         app.get('/rest/product/list', (req, res) => {
             database.listProducts(client.db('vine'), res);
         });
 
-        /* Calls the method listSupplier that returns all supplier to the react application */
+        /* Calls the method listSupplier that returns all supplier to the react application. */
         app.get('/rest/supplier/list', (req, res) => {
-            database.listProducts(client.db('vine'), res);
+            database.listSuppliers(client.db('vine'), res);
+        });
+
+        /* Calls the method createProduct that creates a new product in the database. */
+        app.post('/rest/product/create', (req, res) => {
+            let productData = req.body.productData;
+            database.createProduct(client.db('vine'), res, productData);
+        });
+
+        /* Calls the method createSupplier that creates a new supplier in the database. */
+        app.post('/rest/supplier/create', (req, res) => {
+            let supplierData = req.body.supplierData;
+            database.createSupplier(client.db('vine'), res, supplierData);
+        });
+
+        /* Calls the method deleteProduct that removes the product from the database. */
+        app.post('/rest/product/delete', (req, res) => {
+            let productId = req.body.productId;
+            database.deleteProduct(client.db('vine'), res, productId);
+        });
+
+        /* Calls the method deleteSupplier that removes the supplier from the database. */
+        app.post('/rest/supplier/delete', (req, res) => {
+            let supplierId = req.body.supplierId;
+            database.deleteSupplier(client.db('vine'), res, supplierId);
         });
 
 

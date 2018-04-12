@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Icon, Button, Image } from 'semantic-ui-react';
+import { Header, Icon, Button } from 'semantic-ui-react';
 import '../App.css';
 import { Link } from "react-router-dom"
-import wineImage from '../assets/images/wein.png'
 
 class KundenDetail extends Component {
   render() {
