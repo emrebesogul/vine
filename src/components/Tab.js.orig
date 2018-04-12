@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tab, Input, Button, List, Image, Form } from 'semantic-ui-react'
+import { Tab, Input, Button, List, Image, Icon, Form } from 'semantic-ui-react'
 import avatar from "../assets/images/avatar.png"
 import wineImage from '../assets/images/wine-bottle.png'
 import {Link } from "react-router-dom";
@@ -14,8 +14,13 @@ import { createProduct, createSupplier, deleteProduct, deleteSupplier } from '..
 var products = [];
 var supplier = [];
 var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+<<<<<<< HEAD
+var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+var products = [];
+=======
 
 
+>>>>>>> Add functions to list, create and delete suppliers
 
 class Home extends React.Component{
 
@@ -27,7 +32,6 @@ class Home extends React.Component{
           supplierDefaultIndex : 2      
       }
       this.getSupplierData();
-      this.getProductData();
   } 
   
   async getProductData() {
@@ -43,7 +47,7 @@ class Home extends React.Component{
   async handleDeleteProduct(event, data) {
       const response = await deleteProduct(data._id);
       if(response) {
-          this.getProductData();
+          window.location.reload();
       }
   }
 
@@ -53,25 +57,6 @@ class Home extends React.Component{
           this.getSupplierData();
       }
   }
-
-  async handleCreateProduct(event) {
-    event.preventDefault();
-
-    const productData = {
-        "title" : event.target[0].value,
-        "year" : event.target[1].value,
-        "origin" : event.target[2].value,
-        "quantity" : event.target[3].value,
-        "buyingPrice" : event.target[4].value,
-        "salePrice" : event.target[5].value,
-    }
-
-    const response = await createProduct(productData);
-
-    if(response) {
-        this.getSupplierData();
-    }
-}
 
   async handleCreateSupplier(event) {
       event.preventDefault();
@@ -88,14 +73,11 @@ class Home extends React.Component{
       }
 
       const response = await createSupplier(supplierData);
-      
-      if(response) {
-          this.getSupplierData();
-      } 
+      event.reset()
+      this.getSupplierData();
   }
 
   render(){
-    products = this.state.productData;
     supplier = this.state.supplierData;
     return(
         <Tab menu={{ secondary: true, pointing: true }} panes={
@@ -231,7 +213,7 @@ class Home extends React.Component{
              <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
                [
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
-                  <Form onSubmit={this.handleCreateProduct.bind(this)}>
+                  <Form onSubmit={this.createProduct}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
                     <div className="">
                       <span className="input-label">Produkttitel</span>
@@ -282,17 +264,18 @@ class Home extends React.Component{
                                <Button className="large-button"  circular="true" icon="plus"></Button>
                                <Button className="large-button"  circular="true" icon="minus"></Button>
                                <Button className="large-button"  circular="true" icon="edit"></Button>
-                               <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular="true" icon="remove"></Button>
+                               <Button className="large-button"  circular="true" icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={wineImage} />
                              <List.Content>
                                <Link to="/lager/details">
-                               <List.Header>{item.title}</List.Header></Link>
-                                <List.Description as='a'>Auf Lager: {item.quantity}</List.Description>
-                                <List.Description as='a'>{item.origin}</List.Description>
-                                <List.Description as='a'>{item.year}</List.Description>
+                               <List.Header>Metzinger Weinsteige</List.Header></Link>
+                                <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
+                                <List.Description as='a'>Metzingen, DE</List.Description>
+                                 <List.Description as='a'>1997</List.Description>
                              </List.Content>
                            </List.Item>
+                          <List.Item>
                         </List>
                        )
                      })}

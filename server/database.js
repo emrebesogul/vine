@@ -19,8 +19,18 @@ var call = module.exports = {
     },
 
     /* Create Product */
-    createProduct: function (db, res, productData) {
-        console.log(JSON.stringify(productData));
+    createProduct: function (db, res, supplierData) {
+        db.collection('products').insert({
+            "title" : supplierData.title,
+            "year" : supplierData.year,
+            "origin" : supplierData.origin,
+            "quantity" : supplierData.quantity,
+            "buyingPrice" : supplierData.buyingPrice,
+            "salePrice" : supplierData.salePrice
+        }, (err, result) => {
+            if (err) throw err;
+            res.status(200).send(true);
+        });
     },
 
     /* Create Supplier */
