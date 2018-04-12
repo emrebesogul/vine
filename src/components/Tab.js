@@ -24,7 +24,8 @@ class Home extends React.Component{
       this.state = {
           productData: [],
           supplierData: [],
-          supplierDefaultIndex : 2      
+          activeIndexProducts: 1,
+          activeIndexSuppliers: 1   
       }
       this.getSupplierData();
       this.getProductData();
@@ -55,23 +56,24 @@ class Home extends React.Component{
   }
 
   async handleCreateProduct(event) {
-    event.preventDefault();
+      event.preventDefault();
 
-    const productData = {
-        "title" : event.target[0].value,
-        "year" : event.target[1].value,
-        "origin" : event.target[2].value,
-        "quantity" : event.target[3].value,
-        "buyingPrice" : event.target[4].value,
-        "salePrice" : event.target[5].value,
-    }
+      const productData = {
+          "title" : event.target[0].value,
+          "year" : event.target[1].value,
+          "origin" : event.target[2].value,
+          "quantity" : event.target[3].value,
+          "buyingPrice" : event.target[4].value,
+          "salePrice" : event.target[5].value,
+      }
 
-    const response = await createProduct(productData);
+      const response = await createProduct(productData);
 
-    if(response) {
-        this.getSupplierData();
-    }
-}
+      if(response) {
+          this.getProductData();
+          this.setState({activeIndexProducts: 1})
+      }
+  }
 
   async handleCreateSupplier(event) {
       event.preventDefault();
@@ -91,7 +93,24 @@ class Home extends React.Component{
       
       if(response) {
           this.getSupplierData();
+          this.setState({activeIndexSuppliers: 1})
       } 
+  }
+
+  handleCancelCreateProduct(event) {
+      this.setState({activeIndexProducts: 1})
+  }
+
+  handleCancelCreateSupplier(event) {
+      this.setState({activeIndexSuppliers: 1})
+  }
+
+  handleTabChangeProducts(e, data) {
+    this.setState({activeIndexProducts: data.activeIndex})
+  }
+
+  handleTabChangeSuppliers(e, data) {
+      this.setState({activeIndexSuppliers: data.activeIndex})
   }
 
   render(){
@@ -159,10 +178,10 @@ class Home extends React.Component{
                      })}
                  </Tab.Pane> },
                ]
-               } defaultActiveIndex={1} />
+               } activeIndex={1} />
            </Tab.Pane> },
            { menuItem: 'Lieferanten- und Winzerverwaltung', render: () => <Tab.Pane attached={false}>
-           <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+           <Tab onTabChange={this.handleTabChangeSuppliers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
              [
                { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
                  <h2 className="head-label">Neuen Lieferanten anlegen</h2>
@@ -196,7 +215,7 @@ class Home extends React.Component{
                       <Input className="input-text"  placeholder="Telefonnummer"/>
                     </div>
                     <div className="input-fields">
-                      <Button id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
                       <Button id="button-save-kunde" className="button-menu">Speichern</Button>
                     </div>
                  </Form> 
@@ -225,10 +244,10 @@ class Home extends React.Component{
 
                </Tab.Pane> },
              ]
-               } defaultActiveIndex={0} />
+               } activeIndex={this.state.activeIndexSuppliers} />
            </Tab.Pane> },
            { menuItem: 'Lagerverwaltung', render: () => <Tab.Pane attached={false}>
-             <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+             <Tab onTabChange={this.handleTabChangeProducts.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
                [
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
                   <Form onSubmit={this.handleCreateProduct.bind(this)}>
@@ -258,7 +277,7 @@ class Home extends React.Component{
                       <Input className="input-text"  placeholder="Verkaufspreis"/>
                     </div>
                     <div className="input-fields">
-                      <Button id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateProduct(e))} id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
                       <Button id="button-save-lager" className="button-menu">Speichern</Button>
                     </div>
                   </Form>
@@ -299,7 +318,7 @@ class Home extends React.Component{
     
                 </Tab.Pane> },
               ]
-               } defaultActiveIndex={1}/>
+               } activeIndex={this.state.activeIndexProducts}/>
            </Tab.Pane> },
          ]
       } />
