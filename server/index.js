@@ -11,3 +11,5 @@ const jsonParser = bodyParser.json();
 
 const database = require('./database');
 const url = 'mongodb://127.0.0.1:27017/vine';
+
+console.log("Hello")
