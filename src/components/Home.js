@@ -4,6 +4,13 @@ import { Header, Icon } from 'semantic-ui-react';
 import '../App.css';
 
 class Home extends Component {
+    constructor() {
+        super();
+
+        this.pageTitle = "Semsakrebsler"
+        document.title = this.pageTitle;
+    }
+
   render() {
     return (
         <div className="App">
