@@ -20,7 +20,7 @@ export const getProducts = () => {
     });
 }
 
-export const getSupplier = () => {
+export const getSuppliers = () => {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: url + "/supplier/list",

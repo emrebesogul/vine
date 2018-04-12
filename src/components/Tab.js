@@ -4,15 +4,76 @@ import avatar from "../assets/images/avatar.png"
 import wineImage from '../assets/images/wine-bottle.png'
 import {Link } from "react-router-dom";
 import './components.css';
+import { getProducts, getSuppliers } from '../API/GET/GetMethods';
+import { createProduct, createSupplier, deleteProduct, deleteSupplier } from '../API/POST/PostMethods';
 
-var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
-var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+// var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+// var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+// var products = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+
 var products = [];
+var supplier = [];
+var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+
+
 
 class Home extends React.Component{
 
+  constructor() {
+      super();
+      this.state = {
+          productData: [],
+          supplierData: [],
+          supplierDefaultIndex : 2      
+      }
+      this.getSupplierData();
+  } 
+  
+  async getProductData() {
+      const productData = await getProducts();
+      this.setState({productData: productData});
+  }
+
+  async getSupplierData() {
+      const supplierData = await getSuppliers();
+      this.setState({supplierData: supplierData});
+  }
+
+  async handleDeleteProduct(event, data) {
+      const response = await deleteProduct(data._id);
+      if(response) {
+          window.location.reload();
+      }
+  }
+
+  async handleDeleteSupplier(event, data) {
+      const response = await deleteSupplier(data._id);
+      if(response) {
+          this.getSupplierData();
+      }
+  }
+
+  async handleCreateSupplier(event) {
+      event.preventDefault();
+
+      const supplierData = {
+          "company" : event.target[0].value,
+          "firstName" : event.target[1].value,
+          "lastName" : event.target[2].value,
+          "street" : event.target[3].value,
+          "postcode" : event.target[4].value,
+          "city" : event.target[5].value,
+          "country" : event.target[6].value,
+          "phoneNumber" : event.target[7].value
+      }
+
+      const response = await createSupplier(supplierData);
+      event.reset()
+      this.getSupplierData();
+  }
 
   render(){
+    supplier = this.state.supplierData;
     return(
         <Tab menu={{ secondary: true, pointing: true }} panes={
           [
@@ -82,39 +143,40 @@ class Home extends React.Component{
              [
                { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
                  <h2 className="head-label">Neuen Lieferanten anlegen</h2>
-                 <div>
-                   <span className="input-label">Firma</span>
-                   <Input  placeholder="Firma"/>
-                 </div>
-                 <div className="input-fields">
-                   <span className="input-label">Vorname</span>
-                   <Input   placeholder="Vorname"/>
-                   <span className="input-label-inline" >Nachname</span>
-                   <Input className="input-text"  placeholder="Nachname"/>
-                 </div>
-                 <div className="input-fields">
-                   <span className="input-label">Straße und Hausnr.</span>
-                   <Input className="input-text"  placeholder="Adresse"/>
-                 </div>
-                 <div className="input-fields">
-                   <span className="input-label">Postleitzahl</span>
-                   <Input  placeholder="Postleitzahl"/>
-                     <span className="input-label-inline" >Ort</span>
-                     <Input className="input-text"  placeholder="Ort"/>
-                 </div>
-                 <div className="input-fields">
-                   <span className="input-label">Land</span>
-                   <Input className="input-text"  placeholder="Land"/>
-                 </div>
-                 <div className="input-fields">
-                   <span className="input-label">Telefonnummer</span>
-                   <Input className="input-text"  placeholder="Telefonnummer"/>
-                 </div>
-                 <div className="input-fields">
-                   <Button id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                   <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                 </div>
-
+                 <Form onSubmit={this.handleCreateSupplier.bind(this)}>
+                    <div>
+                      <span className="input-label">Firma</span>
+                      <Input  placeholder="Firma"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Vorname</span>
+                      <Input   placeholder="Vorname"/>
+                      <span className="input-label-inline" >Nachname</span>
+                      <Input className="input-text"  placeholder="Nachname"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Straße und Hausnr.</span>
+                      <Input className="input-text"  placeholder="Adresse"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Postleitzahl</span>
+                      <Input  placeholder="Postleitzahl"/>
+                        <span className="input-label-inline" >Ort</span>
+                        <Input className="input-text"  placeholder="Ort"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Land</span>
+                      <Input className="input-text"  placeholder="Land"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Telefonnummer</span>
+                      <Input className="input-text"  placeholder="Telefonnummer"/>
+                    </div>
+                    <div className="input-fields">
+                      <Button id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+                      <Button id="button-save-kunde" className="button-menu">Speichern</Button>
+                    </div>
+                 </Form> 
                </Tab.Pane> },
                { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
                  <h2 className="head-label">Alle Lieferanten anzeigen</h2>
@@ -126,12 +188,12 @@ class Home extends React.Component{
                           <List.Content floated="right">
                             <Button circular="true" icon="euro sign"></Button>
                             <Button circular="true" icon="edit"></Button>
-                            <Button circular="true" icon="remove"></Button>
+                            <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular="true" icon="remove"></Button>
                           </List.Content>
                           <Image avatar src={avatar} />
                           <List.Content>
-                            <List.Header>{item.name}</List.Header>
-                            <List.Description as='a'>{item.address}</List.Description>
+                            <List.Header>{item.firstName} {item.lastName}</List.Header>
+                            <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description>
                           </List.Content>
                         </List.Item>
                       </List>
@@ -140,7 +202,7 @@ class Home extends React.Component{
 
                </Tab.Pane> },
              ]
-               } defaultActiveIndex={1} />
+               } defaultActiveIndex={0} />
            </Tab.Pane> },
            { menuItem: 'Lagerverwaltung', render: () => <Tab.Pane attached={false}>
              <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={

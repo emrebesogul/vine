@@ -7,7 +7,6 @@ var call = module.exports = {
         db.collection("products").find({}).toArray((err, result) => {
             if (err) throw err;
             res.status(200).send(result);
-            db.close();
         }); 
     },
 
@@ -16,23 +15,44 @@ var call = module.exports = {
         db.collection("suppliers").find({}).toArray((err, result) => {
             if (err) throw err;
             res.status(200).send(result);
-            db.close();
+        });
+    },
+
+    /* Create Product */
+    createProduct: function (db, res, productData) {
+        console.log(JSON.stringify(productData));
+    },
+
+    /* Create Supplier */
+    createSupplier: function (db, res, supplierData) {
+        db.collection('suppliers').insert({
+            "company" : supplierData.company,
+            "firstName" : supplierData.firstName,
+            "lastName" : supplierData.lastName,
+            "street" : supplierData.street,
+            "postcode" : supplierData.postcode,
+            "city" : supplierData.city,
+            "country" : supplierData.country,
+            "phoneNumber" : supplierData.phoneNumber
+        }, (err, result) => {
+            if (err) throw err;
+            res.status(200).send(true);
         });
     },
 
     /* Delete Product */
-    listProducts: function (db, res, productId) {
+    deleteProduct: function (db, res, productId) {
         db.collection("products").remove({ _id : new ObjectId(productId) }, (err, docs) => {
             if (err) throw err;
-            res.send(true);
+            res.status(200).send(true);
         });
     },
 
     /* Delete Supplier */
-    listSuppliers: function (db, res, supplierId) {
+    deleteSupplier: function (db, res, supplierId) {
         db.collection("suppliers").remove({ _id : new ObjectId(supplierId) }, (err, docs) => {
             if (err) throw err;
-            res.send(true);
+            res.status(200).send(true);
         });
     },
 

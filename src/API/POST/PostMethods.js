@@ -3,6 +3,42 @@ import $ from 'jquery';
 var getUrl = window.location;
 var url = getUrl.protocol + "//" + getUrl.hostname + ":8000/rest";
 
+export const createProduct = (productData) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/product/create",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({productData: productData}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
+export const createSupplier = (supplierData) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/supplier/create",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({supplierData: supplierData}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
 export const deleteProduct = (productId) => {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -38,4 +74,3 @@ export const deleteSupplier = (supplierId) => {
         });
     });
 }
-
