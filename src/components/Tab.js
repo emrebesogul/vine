@@ -3,6 +3,7 @@ import { Tab, Input, Button, List, Image, Icon, Form } from 'semantic-ui-react'
 import avatar from "../assets/images/avatar.png"
 import wineImage from '../assets/images/wine-bottle.png'
 import {Link } from "react-router-dom";
+import './components.css';
 
 const panes = [
   { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
