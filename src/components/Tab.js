@@ -7,6 +7,7 @@ import './components.css';
 
 var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
 var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
+var products = [];
 
 class Home extends React.Component{
 
@@ -188,54 +189,30 @@ class Home extends React.Component{
                         <div class="results"></div>
                       </div>
 
-                      <List divided relaxed selection verticalAlign='middle' size="large">
-                        <List.Item>
-                          <List.Content floated="right">
-                            <Button className="large-button"  circular="true" icon="plus"></Button>
-                            <Button className="large-button"  circular="true" icon="minus"></Button>
-                            <Button className="large-button"  circular="true" icon="edit"></Button>
-                            <Button className="large-button"  circular="true" icon="remove"></Button>
-                          </List.Content>
-                          <Image avatar src={wineImage} />
-                          <List.Content>
-                            <Link to="/lager/details">
-                            <List.Header>Metzinger Weinsteige</List.Header></Link>
-                             <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
-                             <List.Description as='a'>Metzingen, DE</List.Description>
-                              <List.Description as='a'>1997</List.Description>
-                          </List.Content>
-                        </List.Item>
-                       <List.Item>
-                         <List.Content floated="right">
-                           <Button className="large-button"  circular="true" icon="plus"></Button>
-                           <Button className="large-button"  circular="true" icon="minus"></Button>
-                           <Button className="large-button"  circular="true" icon="edit"></Button>
-                           <Button className="large-button"  circular="true" icon="remove"></Button>
-                         </List.Content>
-                         <Image avatar src={wineImage} />
-                         <List.Content>
-                           <List.Header>Spätburgunder</List.Header>
-                             <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
-                             <List.Description as='a'>Metzingen, DE</List.Description>
-                             <List.Description as='a'>1996</List.Description>
-                         </List.Content>
-                       </List.Item>
-                       <List.Item>
-                         <List.Content floated="right">
-                           <Button className="large-button"  circular="true" icon="plus"></Button>
-                           <Button className="large-button"  circular="true" icon="minus"></Button>
-                           <Button className="large-button"  circular="true" icon="edit"></Button>
-                           <Button className="large-button"  circular="true" icon="remove"></Button>
-                         </List.Content>
-                         <Image avatar src={wineImage} />
-                         <List.Content>
-                           <List.Header>Trocken</List.Header>
-                              <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
-                              <List.Description as='a'>Bempflingen, DE</List.Description>
-                             <List.Description as='a'>2013</List.Description>
-                         </List.Content>
-                       </List.Item>
-                     </List>
+                     {products.map((item, index) => {
+                       return(
+                         <List divided relaxed selection verticalAlign='middle' size="large">
+                           <List.Item>
+                             <List.Content floated="right">
+                               <Button className="large-button"  circular="true" icon="plus"></Button>
+                               <Button className="large-button"  circular="true" icon="minus"></Button>
+                               <Button className="large-button"  circular="true" icon="edit"></Button>
+                               <Button className="large-button"  circular="true" icon="remove"></Button>
+                             </List.Content>
+                             <Image avatar src={wineImage} />
+                             <List.Content>
+                               <Link to="/lager/details">
+                               <List.Header>Metzinger Weinsteige</List.Header></Link>
+                                <List.Description as='a'>Auf Lager: 5 Stück</List.Description>
+                                <List.Description as='a'>Metzingen, DE</List.Description>
+                                 <List.Description as='a'>1997</List.Description>
+                             </List.Content>
+                           </List.Item>
+                          <List.Item>
+                        </List>
+                       )
+                     })}
+    
                 </Tab.Pane> },
               ]
                } defaultActiveIndex={1}/>
