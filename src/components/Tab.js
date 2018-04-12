@@ -1,11 +1,11 @@
 import React from 'react'
-import { Tab, Input, Button, List, Image, Form } from 'semantic-ui-react'
+import { Tab, Input, Button, List, Image, Form, Message } from 'semantic-ui-react'
 import avatar from "../assets/images/avatar.png"
 import wineImage from '../assets/images/wine-bottle.png'
 import {Link } from "react-router-dom";
 import './components.css';
 import { getCustomers, getProducts, getSuppliers } from '../API/GET/GetMethods';
-import { createCustomer, createProduct, createSupplier, deleteCustomer, deleteProduct, deleteSupplier } from '../API/POST/PostMethods';
+import { createCustomer, createProduct, createSupplier, deleteCustomer, deleteProduct, deleteSupplier, increaseProduct, decreaseProduct } from '../API/POST/PostMethods';
 
 // var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
 // var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
@@ -27,7 +27,8 @@ class Home extends React.Component{
           customerData: [],
           activeIndexCustomers: 1,
           activeIndexProducts: 1,
-          activeIndexSuppliers: 1   
+          activeIndexSuppliers: 1,
+          showErrorMessageQuantity: false
       }
       this.getCustomerData();
       this.getProductData();
@@ -82,7 +83,7 @@ class Home extends React.Component{
       "country" : event.target[5].value,
       "phoneNumber" : event.target[6].value
     }
-    console.log("zs")
+
     const response = await createCustomer(customerData);
 
     if(response) {
@@ -108,6 +109,8 @@ class Home extends React.Component{
       if(response) {
           this.getProductData();
           this.setState({activeIndexProducts: 1});
+      } else {
+          this.setState({ showErrorMessageQuantity: true });
       }
   }
 
@@ -145,22 +148,38 @@ class Home extends React.Component{
       this.setState({activeIndexSuppliers: 1});
   }
 
-  handleTabChangeMenu(e, data) {
+  handleTabChangeMenu(event, data) {
       this.setState({activeIndexCustomers: 1});
       this.setState({activeIndexProducts: 1});
       this.setState({activeIndexSuppliers: 1});
   }
 
-  handleTabChangeCustomers(e, data) {
+  handleTabChangeCustomers(event, data) {
       this.setState({activeIndexCustomers: data.activeIndex});
   }
 
-  handleTabChangeProducts(e, data) {
+  handleTabChangeProducts(event, data) {
       this.setState({activeIndexProducts: data.activeIndex});
   }
 
-  handleTabChangeSuppliers(e, data) {
+  handleTabChangeSuppliers(event, data) {
       this.setState({activeIndexSuppliers: data.activeIndex});
+  }
+
+  async handleIncreaseProduct(event, data) {
+      event.preventDefault();
+      const response = await increaseProduct(data._id);
+      if(response) {
+          this.getProductData();
+      }
+  }
+
+  async handleDecreaseProduct(event, data) {
+      event.preventDefault();
+      const response = await decreaseProduct(data._id);
+      if(response) {
+          this.getProductData();
+      }
   }
 
   render(){
@@ -179,9 +198,9 @@ class Home extends React.Component{
                     <Form onSubmit={this.handleCreateCustomer.bind(this)}>
                       <div>
                         <span className="input-label">Vorname</span>
-                        <Input  placeholder="Vorname"/>
+                        <Input required placeholder="Vorname"/>
                         <span className="input-label-inline" >Nachname</span>
-                        <Input className="input-text"  placeholder="Nachname"/>
+                        <Input required className="input-text"  placeholder="Nachname"/>
                       </div>
                       <div className="input-fields">
                         <span className="input-label">Straße und Hausnr.</span>
@@ -245,9 +264,9 @@ class Home extends React.Component{
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Vorname</span>
-                      <Input   placeholder="Vorname"/>
+                      <Input required placeholder="Vorname"/>
                       <span className="input-label-inline" >Nachname</span>
-                      <Input className="input-text"  placeholder="Nachname"/>
+                      <Input required className="input-text"  placeholder="Nachname"/>
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Straße und Hausnr.</span>
@@ -307,7 +326,7 @@ class Home extends React.Component{
                     <h2 className="head-label">Neues Produkt anlegen</h2>
                     <div className="">
                       <span className="input-label">Produkttitel</span>
-                      <Input className="input-text"  placeholder="Produkttitel"/>
+                      <Input required className="input-text"  placeholder="Produkttitel"/>
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Produktionsjahr</span>
@@ -320,6 +339,7 @@ class Home extends React.Component{
                     <div className="input-fields">
                       <span className="input-label">Anzahl</span>
                       <Input className="input-text"  placeholder="Anzahl"/>
+                      {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Einkaufspreis</span>
@@ -351,8 +371,8 @@ class Home extends React.Component{
                          <List divided relaxed selection verticalAlign='middle' size="large">
                            <List.Item>
                              <List.Content floated="right">
-                               <Button className="large-button"  circular="true" icon="plus"></Button>
-                               <Button className="large-button"  circular="true" icon="minus"></Button>
+                               <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular="true" icon="plus"></Button>
+                               <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular="true" icon="minus"></Button>
                                <Button className="large-button"  circular="true" icon="edit"></Button>
                                <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular="true" icon="remove"></Button>
                              </List.Content>

@@ -94,17 +94,21 @@ var call = module.exports = {
 
     /* Create Product */
     createProduct: function (db, res, productData) {
-        db.collection('products').insert({
-            "title" : productData.title,
-            "year" : productData.year,
-            "origin" : productData.origin,
-            "quantity" : productData.quantity,
-            "buyingPrice" : productData.buyingPrice,
-            "salePrice" : productData.salePrice
-        }, (err, result) => {
-            if (err) throw err;
-            res.status(200).send(true);
-        });
+        if ( isNaN(parseInt(productData.quantity)) || parseInt(productData.quantity) < 0) {
+            res.status(200).send(false);
+        } else {
+            db.collection('products').insert({
+                "title" : productData.title,
+                "year" : productData.year,
+                "origin" : productData.origin,
+                "quantity" : parseInt(productData.quantity),
+                "buyingPrice" : parseFloat(productData.buyingPrice),
+                "salePrice" : parseFloat(productData.salePrice)
+            }, (err, result) => {
+                if (err) throw err;
+                res.status(200).send(true);
+            });
+        }
     },
 
     /* Create Supplier */
@@ -147,5 +151,50 @@ var call = module.exports = {
             res.status(200).send(true);
         });
     },
+
+    /* Increase Product */
+    increaseProduct: function (db, res, productId) {
+        db.collection("products").update(
+            { 
+                _id: ObjectId(productId) 
+            },
+            { 
+                $inc: { quantity: 1, } 
+            }, 
+            (err, result) => {
+                if (err) throw err;
+                res.status(200).send(true);
+            }
+        );
+    },
+
+    /* Decrease Product */
+    decreaseProduct: function (db, res, productId) {
+        db.collection("products").findOne(
+            { 
+                _id: ObjectId(productId) 
+            }, 
+            (err_find_product, res_find_product) => {
+                if (err_find_product) err_find_product;
+                if(res_find_product.quantity > 0) {
+                    res_find_product.quantity = res_find_product.quantity - 1;
+                    db.collection("products").update(
+                        { 
+                            _id: ObjectId(productId) 
+                        },
+                        { 
+                            $set: {
+                                "quantity": res_find_product.quantity
+                            }
+                        }, 
+                        (err_update_product, res_update_product) => {
+                            if (err_update_product) throw err_update_product;
+                        }
+                    );
+                }
+                res.status(200).send(true);
+          });
+    },
+    
 
 }
