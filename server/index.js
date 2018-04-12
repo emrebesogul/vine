@@ -35,6 +35,11 @@ MongoClient.connect(url, function(err, client) {
         console.log("Successfully connected to MongoDB");
         app.use(bodyParser.json());
 
+        /* Calls the method listCustomers that returns all customers to the react application. */
+        app.get('/rest/customer/list', (req, res) => {
+            database.listCustomers(client.db('vine'), res);
+        });
+
         /* Calls the method listProducts that returns all products to the react application. */
         app.get('/rest/product/list', (req, res) => {
             database.listProducts(client.db('vine'), res);
@@ -43,6 +48,12 @@ MongoClient.connect(url, function(err, client) {
         /* Calls the method listSupplier that returns all supplier to the react application. */
         app.get('/rest/supplier/list', (req, res) => {
             database.listSuppliers(client.db('vine'), res);
+        });
+
+        /* Calls the method createCustomer that creates a new customer in the database. */
+        app.post('/rest/customer/create', (req, res) => {
+            let customerData = req.body.customerData;
+            database.createCustomer(client.db('vine'), res, customerData);
         });
 
         /* Calls the method createProduct that creates a new product in the database. */
@@ -55,6 +66,12 @@ MongoClient.connect(url, function(err, client) {
         app.post('/rest/supplier/create', (req, res) => {
             let supplierData = req.body.supplierData;
             database.createSupplier(client.db('vine'), res, supplierData);
+        });
+
+        /* Calls the method deleteCustomer that removes the customer from the database. */
+        app.post('/rest/customer/delete', (req, res) => {
+            let customerId = req.body.customerId;
+            database.deleteCustomer(client.db('vine'), res, customerId);
         });
 
         /* Calls the method deleteProduct that removes the product from the database. */
