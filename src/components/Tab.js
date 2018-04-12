@@ -71,7 +71,7 @@ class Home extends React.Component{
 
       if(response) {
           this.getProductData();
-          this.setState({activeIndexProducts: 1})
+          this.setState({activeIndexProducts: 1});
       }
   }
 
@@ -98,26 +98,31 @@ class Home extends React.Component{
   }
 
   handleCancelCreateProduct(event) {
-      this.setState({activeIndexProducts: 1})
+      this.setState({activeIndexProducts: 1});
   }
 
   handleCancelCreateSupplier(event) {
-      this.setState({activeIndexSuppliers: 1})
+      this.setState({activeIndexSuppliers: 1});
+  }
+
+  handleTabChangeMenu(e, data) {
+      this.setState({activeIndexProducts: 0});
+      this.setState({activeIndexSuppliers: 0});
   }
 
   handleTabChangeProducts(e, data) {
-    this.setState({activeIndexProducts: data.activeIndex})
+      this.setState({activeIndexProducts: data.activeIndex});
   }
 
   handleTabChangeSuppliers(e, data) {
-      this.setState({activeIndexSuppliers: data.activeIndex})
+      this.setState({activeIndexSuppliers: data.activeIndex});
   }
 
   render(){
     products = this.state.productData;
     supplier = this.state.supplierData;
     return(
-        <Tab menu={{ secondary: true, pointing: true }} panes={
+        <Tab onTabChange={this.handleTabChangeMenu.bind(this)} menu={{ secondary: true, pointing: true }} panes={
           [
            { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
            <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
