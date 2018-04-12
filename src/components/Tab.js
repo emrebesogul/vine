@@ -7,6 +7,12 @@ import './components.css';
 
 class Home extends React.Component{
 
+
+    createProduct() {
+        
+    }
+
+
   render(){
     return(
         <Tab menu={{ secondary: true, pointing: true }} panes={
@@ -175,7 +181,7 @@ class Home extends React.Component{
              <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
                [
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
-                  <Form>
+                  <Form onSubmit={this.createProduct}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
                     <div className="">
                       <span className="input-label">Produkttitel</span>
