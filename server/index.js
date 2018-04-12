@@ -86,6 +86,18 @@ MongoClient.connect(url, function(err, client) {
             database.deleteSupplier(client.db('vine'), res, supplierId);
         });
 
+        /* Calls the method increaseProduct that increases the number of this product in the database. */
+        app.post('/rest/product/increase', (req, res) => {
+            let productId = req.body.productId;
+            database.increaseProduct(client.db('vine'), res, productId);
+        });
+
+        /* Calls the method decreaseProduct that decreases the number of this product in the database. */
+        app.post('/rest/product/decrease', (req, res) => {
+            let productId = req.body.productId;
+            database.decreaseProduct(client.db('vine'), res, productId);
+        });
+
 
 
         app.listen(8000, function() {

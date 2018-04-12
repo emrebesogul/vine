@@ -110,3 +110,39 @@ export const deleteSupplier = (supplierId) => {
         });
     });
 }
+
+export const increaseProduct = (productId) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/product/increase",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({productId: productId}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
+export const decreaseProduct = (productId) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/product/decrease",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({productId: productId}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
