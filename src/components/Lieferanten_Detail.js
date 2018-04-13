@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import { Header, Icon, Button } from 'semantic-ui-react';
 import '../App.css';
 import { Link } from "react-router-dom"
-import { getCustomerById } from '../API/POST/PostMethods';
+import { getSupplierById } from '../API/POST/PostMethods';
 
-class KundenDetail extends Component {
+class LieferantenDetail extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-          customerData: []
+        supplierData: []
       }
-      this.getCustomer();
+      this.getSupplier();
   }
 
-  async getCustomer() {
-      const customerData = await getCustomerById(this.props.location.query._id);
-      this.setState({customerData: customerData});
+  async getSupplier() {
+      const supplierData = await getSupplierById(this.props.location.query._id);
+      this.setState({supplierData: supplierData});
   }
+
 
   render() {
     return (
@@ -36,22 +37,26 @@ class KundenDetail extends Component {
             <Button id="button-back">Zurück</Button>
             </Link>
           <div class="ui segment">
-            <h2 className="head-label"> {this.state.customerData.firstName} {this.state.customerData.lastName} </h2>
+            <h2 className="head-label"> {this.state.supplierData.firstName} {this.state.supplierData.lastName} </h2>
+            <div id="first-label-detail" className="label-inline">
+              <span className="detail-label"> Firma:</span>
+              <span className="label-content"> {this.state.supplierData.company}</span>
+            </div>
             <div id="first-label-detail" className="label-inline">
               <span className="detail-label"> Name:</span>
-              <span className="label-content"> {this.state.customerData.firstName} {this.state.customerData.lastName}</span>
+              <span className="label-content"> {this.state.supplierData.firstName} {this.state.supplierData.lastName}</span>
             </div>
             <div>
               <span className="detail-label"> Straße:</span>
-              <span className="label-content"> {this.state.customerData.street} </span>
+              <span className="label-content"> {this.state.supplierData.street} </span>
             </div>
             <div>
               <span className="detail-label"> Ort: </span>
-              <span className="label-content"> {this.state.customerData.postcode} {this.state.customerData.city} </span>
+              <span className="label-content"> {this.state.supplierData.postcode} {this.state.supplierData.city} </span>
             </div>
             <div>
               <span className="detail-label"> Telefon:</span>
-              <span className="label-content"> {this.state.customerData.phoneNumber}  </span>
+              <span className="label-content"> {this.state.supplierData.phoneNumber}  </span>
             </div>
         </div>
       </div>
@@ -60,5 +65,5 @@ class KundenDetail extends Component {
   }
 }
 
-export default KundenDetail;
+export default LieferantenDetail;
 

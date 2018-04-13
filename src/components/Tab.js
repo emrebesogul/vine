@@ -2,25 +2,20 @@ import React from 'react'
 import { Tab, Input, Button, List, Image, Form, Message } from 'semantic-ui-react'
 import avatar from "../assets/images/avatar.png"
 import wineImage from '../assets/images/wine-bottle.png'
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './components.css';
 import { getCustomers, getProducts, getSuppliers } from '../API/GET/GetMethods';
 import { createCustomer, createProduct, createSupplier, deleteCustomer, deleteProduct, deleteSupplier, increaseProduct, decreaseProduct } from '../API/POST/PostMethods';
 
-// var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
-// var supplier = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
-// var products = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
-
 var products = [];
 var supplier = [];
-var customers = [{name: "Steve Jobs", address: "Stuqqi"}, {name: "Jimmy Hendrix", address: "Bepflinga"}];
-
+var customers = [];
 
 
 class Home extends React.Component{
 
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
       this.state = {
           productData: [],
           supplierData: [],
@@ -98,10 +93,12 @@ class Home extends React.Component{
       const productData = {
         "title" : event.target[0].value,
         "year" : event.target[1].value,
-        "origin" : event.target[2].value,
-        "quantity" : event.target[3].value,
-        "buyingPrice" : event.target[4].value,
-        "salePrice" : event.target[5].value,
+        "location" : event.target[2].value,
+        "region" : event.target[3].value,
+        "country" : event.target[4].value,
+        "quantity" : event.target[5].value,
+        "buyingPrice" : event.target[6].value,
+        "salePrice" : event.target[7].value,
     }
 
       const response = await createProduct(productData);
@@ -239,9 +236,9 @@ class Home extends React.Component{
                              </List.Content>
                              <Image avatar src={avatar} />
                              <List.Content>
-                               <Link to="/kunde/details">
-                               <List.Header>{item.firstName} {item.lastName}</List.Header></Link>
-                               <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description>
+                             <Link to={{ pathname: '/kunde/details', query: item }}>
+                               <List.Header>{item.firstName} {item.lastName}</List.Header>
+                               <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description></Link>
                              </List.Content>
                            </List.Item>
                          </List>
@@ -306,8 +303,9 @@ class Home extends React.Component{
                           </List.Content>
                           <Image avatar src={avatar} />
                           <List.Content>
+                          <Link to={{ pathname: '/lieferant/details', query: item }}>
                             <List.Header>{item.firstName} {item.lastName}</List.Header>
-                            <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description>
+                            <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description></Link>
                           </List.Content>
                         </List.Item>
                       </List>
@@ -325,16 +323,24 @@ class Home extends React.Component{
                   <Form onSubmit={this.handleCreateProduct.bind(this)}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
                     <div className="">
-                      <span className="input-label">Produkttitel</span>
-                      <Input required className="input-text"  placeholder="Produkttitel"/>
+                      <span className="input-label">Bezeichnung</span>
+                      <Input required className="input-text"  placeholder="Bezeichnung"/>
                     </div>
                     <div className="input-fields">
-                      <span className="input-label">Produktionsjahr</span>
-                      <Input className="input-text"  placeholder="Produktionsjahr"/>
+                      <span className="input-label">Jahrgang</span>
+                      <Input className="input-text"  placeholder="Jahrgang"/>
                     </div>
                     <div className="input-fields">
-                      <span className="input-label">Produktherkunft</span>
-                      <Input className="input-text"  placeholder="Produktherkunft"/>
+                      <span className="input-label">Lage</span>
+                      <Input className="input-text"  placeholder="Lage"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Region</span>
+                      <Input className="input-text"  placeholder="Region"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Land</span>
+                      <Input className="input-text"  placeholder="Land"/>
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Anzahl</span>
@@ -378,13 +384,13 @@ class Home extends React.Component{
                              </List.Content>
                              <Image avatar src={wineImage} />
                              <List.Content>
-                               <Link to="/lager/details">
-                               <List.Header>{item.title}</List.Header></Link>
+                               <Link to={{ pathname: '/lager/details', query: {item: item} }}>
+                               <List.Header>{item.title}</List.Header>
                                <List.Description as='a'>
                                   {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }
                                </List.Description>
                                <List.Description as='a'>{item.origin}</List.Description>
-                               <List.Description as='a'>{item.year}</List.Description>
+                               <List.Description as='a'>{item.year}</List.Description></Link>
                              </List.Content>
                            </List.Item>
                         </List>

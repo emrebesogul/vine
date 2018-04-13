@@ -146,3 +146,59 @@ export const decreaseProduct = (productId) => {
         });
     });
 }
+
+export const getCustomerById = (customerId) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/customer/get",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({customerId: customerId}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
+export const getSupplierById = (supplierId) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/supplier/get",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({supplierId: supplierId}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
+export const getProductById = (productId) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+          url: url + "/product/get",
+          type: "POST",
+          cache: false,
+          contentType: 'application/json',
+          data: JSON.stringify({productId: productId}),
+          success: function(res) {
+              resolve(res);
+          },
+          error: function(xhr, status, err){
+              reject(err);
+          }
+        });
+    });
+}
+
+
