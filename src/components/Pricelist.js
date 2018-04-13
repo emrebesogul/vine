@@ -5,14 +5,14 @@ import { Link } from "react-router-dom"
 import wineImage from '../assets/images/wein.png'
 import { getSupplierById } from '../API/POST/PostMethods';
 
-class PriceList extends Component {
+class Pricelist extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-        supplierData: [],
-        priceList: [],
-        showCompany: false
+          supplierData: [],
+          priceList: [],
+          showCompany: false
       }
       this.getSupplier();
   }
@@ -21,7 +21,7 @@ class PriceList extends Component {
       const supplierData = await getSupplierById(this.props.location.query.item._id);
       this.setState({supplierData: supplierData});
       if(supplierData.company !== "") {
-        this.setState({showCompany: true});
+          this.setState({showCompany: true});
       }
       // const priceList = await getPriceList(this.props.location.query.item._id);
       // this.setState({priceList: priceList});
@@ -53,4 +53,4 @@ class PriceList extends Component {
   }
 }
 
-export default PriceList;
+export default Pricelist;

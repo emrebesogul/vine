@@ -4,7 +4,7 @@ import '../App.css';
 import { Link } from "react-router-dom"
 import { getCustomerById } from '../API/POST/PostMethods';
 
-class KundenDetail extends Component {
+class CustomerDetails extends Component {
 
   constructor(props) {
       super(props);
@@ -60,4 +60,4 @@ class KundenDetail extends Component {
   }
 }
 
-export default KundenDetail;
+export default CustomerDetails;

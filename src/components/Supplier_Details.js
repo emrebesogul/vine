@@ -4,12 +4,12 @@ import '../App.css';
 import { Link } from "react-router-dom"
 import { getSupplierById } from '../API/POST/PostMethods';
 
-class LieferantenDetail extends Component {
+class SupplierDetails extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-        supplierData: []
+          supplierData: []
       }
       this.getSupplier();
   }
@@ -65,4 +65,4 @@ class LieferantenDetail extends Component {
   }
 }
 
-export default LieferantenDetail;
+export default SupplierDetails;

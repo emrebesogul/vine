@@ -5,12 +5,12 @@ import { Link } from "react-router-dom"
 import wineImage from '../assets/images/wein.png'
 import { getProductById } from '../API/POST/PostMethods';
 
-class LagerDetail extends Component {
+class ProductDetails extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-        productData: []
+          productData: []
       }
       this.getProduct();
   }
@@ -80,4 +80,4 @@ class LagerDetail extends Component {
   }
 }
 
-export default LagerDetail;
+export default ProductDetails;

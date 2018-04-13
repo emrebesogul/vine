@@ -6,7 +6,7 @@ import wineImage from '../assets/images/wein.png'
 import { getProductById } from '../API/POST/PostMethods';
 import { updateProduct } from '../API/PUT/PutMethods';
 
-class LagerEdit extends Component {
+class EditProduct extends Component {
 
   constructor(props) {
       super(props);
@@ -136,4 +136,4 @@ class LagerEdit extends Component {
   }
 }
 
-export default LagerEdit;
+export default EditProduct;

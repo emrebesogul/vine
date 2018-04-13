@@ -67,17 +67,17 @@ class Home extends React.Component{
   }
 
   async handleCreateCustomer(event) {
-    event.preventDefault();
+      event.preventDefault();
 
-    const customerData = {
-      "firstName" : event.target[0].value,
-      "lastName" : event.target[1].value,
-      "street" : event.target[2].value,
-      "postcode" : event.target[3].value,
-      "city" : event.target[4].value,
-      "country" : event.target[5].value,
-      "phoneNumber" : event.target[6].value
-    }
+      const customerData = {
+          "firstName" : event.target[0].value,
+          "lastName" : event.target[1].value,
+          "street" : event.target[2].value,
+          "postcode" : event.target[3].value,
+          "city" : event.target[4].value,
+          "country" : event.target[5].value,
+          "phoneNumber" : event.target[6].value
+      }
 
     const response = await createCustomer(customerData);
 
@@ -91,14 +91,14 @@ class Home extends React.Component{
       event.preventDefault();
 
       const productData = {
-        "title" : event.target[0].value,
-        "year" : event.target[1].value,
-        "location" : event.target[2].value,
-        "region" : event.target[3].value,
-        "country" : event.target[4].value,
-        "quantity" : event.target[5].value,
-        "buyingPrice" : event.target[6].value,
-        "salePrice" : event.target[7].value,
+          "title" : event.target[0].value,
+          "year" : event.target[1].value,
+          "location" : event.target[2].value,
+          "region" : event.target[3].value,
+          "country" : event.target[4].value,
+          "quantity" : event.target[5].value,
+          "buyingPrice" : event.target[6].value,
+          "salePrice" : event.target[7].value,
     }
 
       const response = await createProduct(productData);
@@ -231,12 +231,12 @@ class Home extends React.Component{
                           <List divided relaxed selection verticalAlign='middle' size="large">
                            <List.Item>
                              <List.Content floated="right">
-                             <Link to={{ pathname: '/kunde/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
+                             <Link to={{ pathname: '/customer/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                                <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={avatar} />
                              <List.Content>
-                             <Link to={{ pathname: '/kunde/details', query: item }}>
+                             <Link to={{ pathname: '/customer/details', query: item }}>
                                <List.Header>{item.firstName} {item.lastName}</List.Header>
                                <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
                              </List.Content>
@@ -297,13 +297,13 @@ class Home extends React.Component{
                        <List key={index} divided relaxed selection verticalAlign='middle' size="large">
                         <List.Item>
                           <List.Content floated="right">
-                            <Link to={{ pathname: '/lieferant/priceList', query: {item: item} }}><Button circular icon="euro"></Button></Link>
-                            <Link to={{ pathname: '/lieferant/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
+                            <Link to={{ pathname: '/supplier/pricelist', query: {item: item} }}><Button circular icon="euro"></Button></Link>
+                            <Link to={{ pathname: '/supplier/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                             <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular icon="remove"></Button>
                           </List.Content>
                           <Image avatar src={avatar} />
                           <List.Content>
-                          <Link to={{ pathname: '/lieferant/details', query: item }}>
+                          <Link to={{ pathname: '/supplier/details', query: item }}>
                             <List.Header>{item.firstName} {item.lastName}</List.Header>
                             <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
                           </List.Content>
@@ -378,12 +378,12 @@ class Home extends React.Component{
                              <List.Content floated="right">
                                <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular icon="plus"></Button>
                                <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular icon="minus"></Button>
-                               <Link to={{ pathname: '/lager/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
+                               <Link to={{ pathname: '/product/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                                <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={wineImage} />
                              <List.Content>
-                               <Link to={{ pathname: '/lager/details', query: {item: item} }}>
+                               <Link to={{ pathname: '/product/details', query: {item: item} }}>
                                <List.Header>{item.title}</List.Header>
                                <List.Description>
                                   {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }

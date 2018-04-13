@@ -6,7 +6,7 @@ import wineImage from '../assets/images/wein.png'
 import { getCustomerById } from '../API/POST/PostMethods';
 import { updateCustomer } from '../API/PUT/PutMethods';
 
-class KundeBearbeiten extends Component {
+class EditCustomer extends Component {
 
   constructor(props) {
       super(props);
@@ -117,4 +117,4 @@ class KundeBearbeiten extends Component {
   }
 }
 
-export default KundeBearbeiten;
+export default EditCustomer;

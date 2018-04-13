@@ -6,7 +6,7 @@ import wineImage from '../assets/images/wein.png'
 import { getSupplierById } from '../API/POST/PostMethods';
 import { updateSupplier } from '../API/PUT/PutMethods';
 
-class SupplierEdit extends Component {
+class EditSupplier extends Component {
 
   constructor(props) {
       super(props);
@@ -124,4 +124,4 @@ class SupplierEdit extends Component {
   }
 }
 
-export default SupplierEdit;
+export default EditSupplier;
