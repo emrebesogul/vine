@@ -28,13 +28,13 @@ class Home extends React.Component{
       this.getCustomerData();
       this.getProductData();
       this.getSupplierData();
-  } 
+  }
 
   async getCustomerData() {
       const customerData = await getCustomers();
       this.setState({customerData: customerData});
   }
-  
+
   async getProductData() {
       const productData = await getProducts();
       this.setState({productData: productData});
@@ -126,11 +126,11 @@ class Home extends React.Component{
       }
 
       const response = await createSupplier(supplierData);
-      
+
       if(response) {
           this.getSupplierData();
           this.setState({activeIndexSuppliers: 1})
-      } 
+      }
   }
 
   handleCancelCreateCustomer(event) {
@@ -190,7 +190,7 @@ class Home extends React.Component{
            <Tab onTabChange={this.handleTabChangeCustomers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
                [
                  { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
-                   
+
                     <h2 className="head-label">Neuen Kunden anlegen</h2>
                     <Form onSubmit={this.handleCreateCustomer.bind(this)}>
                       <div>
@@ -227,18 +227,18 @@ class Home extends React.Component{
                    <h2 className="head-label">Alle Kunden anzeigen</h2>
                      {customers.map((item, index) => {
                        return(
-                         <div>
+                         <div key={index}>
                           <List divided relaxed selection verticalAlign='middle' size="large">
                            <List.Item>
                              <List.Content floated="right">
-                               <Button circular="true" icon="edit"></Button>
-                               <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular="true" icon="remove"></Button>
+                               <Button circular icon="edit"></Button>
+                               <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={avatar} />
                              <List.Content>
                              <Link to={{ pathname: '/kunde/details', query: item }}>
                                <List.Header>{item.firstName} {item.lastName}</List.Header>
-                               <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description></Link>
+                               <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
                              </List.Content>
                            </List.Item>
                          </List>
@@ -287,25 +287,25 @@ class Home extends React.Component{
                       <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
                       <Button id="button-save-kunde" className="button-menu">Speichern</Button>
                     </div>
-                 </Form> 
+                 </Form>
                </Tab.Pane> },
                { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
                  <h2 className="head-label">Alle Lieferanten anzeigen</h2>
                  {
                    supplier.map((item, index) =>{
                      return(
-                       <List divided relaxed selection verticalAlign='middle' size="large">
+                       <List key={index} divided relaxed selection verticalAlign='middle' size="large">
                         <List.Item>
                           <List.Content floated="right">
-                            <Button circular="true" icon="euro sign"></Button>
-                            <Button circular="true" icon="edit"></Button>
-                            <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular="true" icon="remove"></Button>
+                            <Button circular icon="euro"></Button>
+                            <Button circular icon="edit"></Button>
+                            <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular icon="remove"></Button>
                           </List.Content>
                           <Image avatar src={avatar} />
                           <List.Content>
                           <Link to={{ pathname: '/lieferant/details', query: item }}>
                             <List.Header>{item.firstName} {item.lastName}</List.Header>
-                            <List.Description as='a'>{item.street} {item.postcode} {item.city}</List.Description></Link>
+                            <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
                           </List.Content>
                         </List.Item>
                       </List>
@@ -364,39 +364,39 @@ class Home extends React.Component{
                 </Tab.Pane> },
                 { menuItem: 'Lagerbestand', render: () => <Tab.Pane>
                       <h2 className="head-label">Aktuelle Lagerbestände anzeigen</h2>
-                      <div class="ui search">
-                        <div class="ui icon input">
-                          <input id="search-lager" class="prompt" type="text" placeholder="Nach Produkten suchen..."/>
-                          <i class="search icon"></i>
+                      <div className="ui search">
+                        <div className="ui icon input">
+                          <input id="search-lager" className="prompt" type="text" placeholder="Nach Produkten suchen..."/>
+                          <i className="search icon"></i>
                         </div>
-                        <div class="results"></div>
+                        <div className="results"></div>
                       </div>
 
                      {products.map((item, index) => {
                        return(
-                         <List divided relaxed selection verticalAlign='middle' size="large">
+                         <List key={index} divided relaxed selection verticalAlign='middle' size="large">
                            <List.Item>
                              <List.Content floated="right">
-                               <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular="true" icon="plus"></Button>
-                               <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular="true" icon="minus"></Button>
-                               <Button className="large-button"  circular="true" icon="edit"></Button>
-                               <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular="true" icon="remove"></Button>
+                               <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular icon="plus"></Button>
+                               <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular icon="minus"></Button>
+                               <Button className="large-button"  circular icon="edit"></Button>
+                               <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={wineImage} />
                              <List.Content>
                                <Link to={{ pathname: '/lager/details', query: {item: item} }}>
                                <List.Header>{item.title}</List.Header>
-                               <List.Description as='a'>
+                               <List.Description>
                                   {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }
                                </List.Description>
-                               <List.Description as='a'>{item.origin}</List.Description>
-                               <List.Description as='a'>{item.year}</List.Description></Link>
+                               <List.Description>{item.origin}</List.Description>
+                               <List.Description>{item.year}</List.Description></Link>
                              </List.Content>
                            </List.Item>
                         </List>
                        )
                      })}
-    
+
                 </Tab.Pane> },
               ]
                } activeIndex={this.state.activeIndexProducts}/>
