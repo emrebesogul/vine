@@ -36,7 +36,7 @@ class LieferantenDetail extends Component {
           <Link to="/">
             <Button id="button-back">Zurück</Button>
             </Link>
-          <div class="ui segment">
+          <div className="ui segment">
             <h2 className="head-label"> {this.state.supplierData.firstName} {this.state.supplierData.lastName} </h2>
             <div id="first-label-detail" className="label-inline">
               <span className="detail-label"> Firma:</span>
@@ -66,4 +66,3 @@ class LieferantenDetail extends Component {
 }
 
 export default LieferantenDetail;
-

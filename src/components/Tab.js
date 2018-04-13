@@ -223,6 +223,40 @@ class Home extends React.Component{
                       </div>
                    </Form>
                  </Tab.Pane> },
+                 { menuItem: 'Kunde bearbeiten', render: () => <Tab.Pane>
+
+                    <h2 className="head-label">Einen bestehenden Kunden bearbeiten</h2>
+                    <Form onSubmit={this.handleCreateCustomer.bind(this)}>
+                      <div>
+                        <span className="input-label">Vorname</span>
+                        <Input required placeholder="Vorname"/>
+                        <span className="input-label-inline" >Nachname</span>
+                        <Input required className="input-text"  placeholder="Nachname"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Straße und Hausnr.</span>
+                        <Input className="input-text"  placeholder="Adresse"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Postleitzahl</span>
+                        <Input placeholder="Postleitzahl"/>
+                          <span className="input-label-inline" >Ort</span>
+                          <Input className="input-text"  placeholder="Ort"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Land</span>
+                        <Input className="input-text"  placeholder="Land"/>
+                      </div>
+                      <div className="input-fields">
+                        <span className="input-label">Telefonnummer</span>
+                        <Input className="input-text"  placeholder="Telefonnummer"/>
+                      </div>
+                      <div className="input-fields">
+                        <Button type = "reset" onClick={((e) => this.handleCancelCreateCustomer(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+                        <Button id="button-save-kunde" className="button-menu">Speichern</Button>
+                      </div>
+                   </Form>
+                 </Tab.Pane> },
                  { menuItem: 'Kundenliste', render: () => <Tab.Pane>
                    <h2 className="head-label">Alle Kunden anzeigen</h2>
                      {customers.map((item, index) => {
@@ -254,6 +288,43 @@ class Home extends React.Component{
              [
                { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
                  <h2 className="head-label">Neuen Lieferanten anlegen</h2>
+                 <Form onSubmit={this.handleCreateSupplier.bind(this)}>
+                    <div>
+                      <span className="input-label">Firma</span>
+                      <Input  placeholder="Firma"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Vorname</span>
+                      <Input required placeholder="Vorname"/>
+                      <span className="input-label-inline" >Nachname</span>
+                      <Input required className="input-text"  placeholder="Nachname"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Straße und Hausnr.</span>
+                      <Input className="input-text"  placeholder="Adresse"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Postleitzahl</span>
+                      <Input  placeholder="Postleitzahl"/>
+                        <span className="input-label-inline" >Ort</span>
+                        <Input className="input-text"  placeholder="Ort"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Land</span>
+                      <Input className="input-text"  placeholder="Land"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Telefonnummer</span>
+                      <Input className="input-text"  placeholder="Telefonnummer"/>
+                    </div>
+                    <div className="input-fields">
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+                      <Button id="button-save-kunde" className="button-menu">Speichern</Button>
+                    </div>
+                 </Form>
+               </Tab.Pane> },
+               { menuItem: 'Lieferant bearbeiten', render: () => <Tab.Pane>
+                 <h2 className="head-label">Einen bestehenden Lieferanten bearbeiten</h2>
                  <Form onSubmit={this.handleCreateSupplier.bind(this)}>
                     <div>
                       <span className="input-label">Firma</span>
@@ -322,6 +393,49 @@ class Home extends React.Component{
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
                   <Form onSubmit={this.handleCreateProduct.bind(this)}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
+                    <div className="">
+                      <span className="input-label">Bezeichnung</span>
+                      <Input required className="input-text"  placeholder="Bezeichnung"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Jahrgang</span>
+                      <Input className="input-text"  placeholder="Jahrgang"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Lage</span>
+                      <Input className="input-text"  placeholder="Lage"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Region</span>
+                      <Input className="input-text"  placeholder="Region"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Land</span>
+                      <Input className="input-text"  placeholder="Land"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Anzahl</span>
+                      <Input className="input-text"  placeholder="Anzahl"/>
+                      {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Einkaufspreis</span>
+                      <Input className="input-text"  placeholder="Einkaufspreis"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Verkaufspreis</span>
+                      <Input className="input-text"  placeholder="Verkaufspreis"/>
+                    </div>
+                    <div className="input-fields">
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateProduct(e))} id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
+                      <Button id="button-save-lager" className="button-menu">Speichern</Button>
+                    </div>
+                  </Form>
+
+                </Tab.Pane> },
+                { menuItem: 'Produkt bearbeiten', render: () => <Tab.Pane>
+                  <Form onSubmit={this.handleCreateProduct.bind(this)}>
+                    <h2 className="head-label">Bestehendes Produkt bearbeiten</h2>
                     <div className="">
                       <span className="input-label">Bezeichnung</span>
                       <Input required className="input-text"  placeholder="Bezeichnung"/>

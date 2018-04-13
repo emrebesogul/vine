@@ -39,7 +39,7 @@ class LagerDetail extends Component {
         <Link to={{ pathname: '/', query: {item: "item"} }}>
             <Button id="button-back">Zurück</Button>
             </Link>
-          <div class="ui segment">
+          <div className="ui segment">
             <Image id="product-view" size="tiny" src={wineImage} />
             <h2 className="head-label"> {this.state.productData.title} </h2>
             <div id="first-label-detail" className="label-inline">

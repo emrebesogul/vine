@@ -35,7 +35,7 @@ class KundenDetail extends Component {
           <Link to="/">
             <Button id="button-back">Zurück</Button>
             </Link>
-          <div class="ui segment">
+          <div className="ui segment">
             <h2 className="head-label"> {this.state.customerData.firstName} {this.state.customerData.lastName} </h2>
             <div id="first-label-detail" className="label-inline">
               <span className="detail-label"> Name:</span>
@@ -61,4 +61,3 @@ class KundenDetail extends Component {
 }
 
 export default KundenDetail;
-
