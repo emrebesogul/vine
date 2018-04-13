@@ -112,7 +112,8 @@ MongoClient.connect(url, function(err, client) {
 
         /* Calls the method editProduct that updates the product data in the database. */
         app.put('/rest/product/edit', (req, res) => {
-            database.editProduct(client.db('vine'), res);
+            let productData = req.body.productData;
+            database.editProduct(client.db('vine'), res, productData);
         });
 
         /* Calls the method increaseProduct that increases the number of this product in the database. */
