@@ -94,13 +94,18 @@ var call = module.exports = {
 
     /* Create Product */
     createProduct: function (db, res, productData) {
+        if(productData.quantity === "") {
+            productData.quantity = 0;
+        }
         if ( isNaN(parseInt(productData.quantity)) || parseInt(productData.quantity) < 0) {
             res.status(200).send(false);
         } else {
             db.collection('products').insert({
                 "title" : productData.title,
                 "year" : productData.year,
-                "origin" : productData.origin,
+                "location" : productData.location,
+                "region" : productData.region,
+                "country" : productData.country,
                 "quantity" : parseInt(productData.quantity),
                 "buyingPrice" : parseFloat(productData.buyingPrice),
                 "salePrice" : parseFloat(productData.salePrice)
@@ -196,5 +201,39 @@ var call = module.exports = {
           });
     },
     
+    /* Get Customer By ID */
+    getCustomerById: function (db, res, customerId) {
+        db.collection("customers").findOne(
+            { 
+                _id: ObjectId(customerId) 
+            }, 
+            (err_find_customer, res_find_customer) => {
+                if (err_find_customer) err_find_customer;
+                res.status(200).send(res_find_customer);
+          });
+    },
 
+    /* Get Supplier By ID */
+    getSupplierById: function (db, res, supplierId) {
+        db.collection("suppliers").findOne(
+            { 
+                _id: ObjectId(supplierId) 
+            }, 
+            (err_find_supplier, res_find_supplier) => {
+                if (err_find_supplier) err_find_supplier;
+                res.status(200).send(res_find_supplier);
+            });
+    },
+
+    /* Get Product By ID */
+    getProductById: function (db, res, productId) {
+        db.collection("products").findOne(
+            { 
+                _id: ObjectId(productId) 
+            }, 
+            (err_find_product, res_find_product) => {
+                if (err_find_product) err_find_product;
+                res.status(200).send(res_find_product);
+            });
+    },
 }
