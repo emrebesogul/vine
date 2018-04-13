@@ -84,7 +84,8 @@ MongoClient.connect(url, function(err, client) {
 
         /* Calls the method editSupplier that updates the supplier data in the database. */
         app.put('/rest/supplier/edit', (req, res) => {
-            database.editSupplier(client.db('vine'), res);
+            let supplierData = req.body.supplierData;
+            database.editSupplier(client.db('vine'), res, supplierData);
         });       
 
         /* Calls the method listProducts that returns all products to the react application. */

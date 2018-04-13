@@ -6,11 +6,12 @@ import wineImage from '../assets/images/wein.png'
 import { getProductById } from '../API/POST/PostMethods';
 import { updateProduct } from '../API/PUT/PutMethods';
 
-class LagerDetail extends Component {
+class LagerEdit extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
+          productId: this.props.location.query.item._id,
           productData: [],
           showErrorMessageQuantity: false
       }
@@ -18,7 +19,7 @@ class LagerDetail extends Component {
   }
 
   async getProduct() {
-      const productData = await getProductById(this.props.location.query.item._id);
+      const productData = await getProductById(this.state.productId);
       this.setState({"productData": productData});
       this.setState({"title": productData.title});
       this.setState({"year": productData.year});
@@ -47,7 +48,7 @@ class LagerDetail extends Component {
   async handleUpdate(event) {
       event.preventDefault();
       const productData = {
-          "productId": this.props.location.query.item._id,
+          "productId": this.state.productId,
           "title" : event.target[0].value,
           "year" : event.target[1].value,
           "location" : event.target[2].value,
@@ -128,7 +129,6 @@ class LagerDetail extends Component {
                   <Button id="button-save-lager" className="button-menu">Speichern</Button>
                 </div>
               </Form>
-
           </div>
         </div>
       </div>
@@ -136,4 +136,4 @@ class LagerDetail extends Component {
   }
 }
 
-export default LagerDetail;
+export default LagerEdit;

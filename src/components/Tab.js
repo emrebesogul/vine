@@ -223,40 +223,6 @@ class Home extends React.Component{
                       </div>
                    </Form>
                  </Tab.Pane> },
-                 { menuItem: 'Kunde bearbeiten', render: () => <Tab.Pane>
-
-                    <h2 className="head-label">Einen bestehenden Kunden bearbeiten</h2>
-                    <Form onSubmit={this.handleCreateCustomer.bind(this)}>
-                      <div>
-                        <span className="input-label">Vorname</span>
-                        <Input required placeholder="Vorname"/>
-                        <span className="input-label-inline" >Nachname</span>
-                        <Input required className="input-text"  placeholder="Nachname"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Straße und Hausnr.</span>
-                        <Input className="input-text"  placeholder="Adresse"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Postleitzahl</span>
-                        <Input placeholder="Postleitzahl"/>
-                          <span className="input-label-inline" >Ort</span>
-                          <Input className="input-text"  placeholder="Ort"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Land</span>
-                        <Input className="input-text"  placeholder="Land"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Telefonnummer</span>
-                        <Input className="input-text"  placeholder="Telefonnummer"/>
-                      </div>
-                      <div className="input-fields">
-                        <Button type = "reset" onClick={((e) => this.handleCancelCreateCustomer(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                        <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                      </div>
-                   </Form>
-                 </Tab.Pane> },
                  { menuItem: 'Kundenliste', render: () => <Tab.Pane>
                    <h2 className="head-label">Alle Kunden anzeigen</h2>
                      {customers.map((item, index) => {
@@ -265,7 +231,7 @@ class Home extends React.Component{
                           <List divided relaxed selection verticalAlign='middle' size="large">
                            <List.Item>
                              <List.Content floated="right">
-                               <Button circular icon="edit"></Button>
+                             <Link to={{ pathname: '/kunde/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                                <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={avatar} />
@@ -323,43 +289,6 @@ class Home extends React.Component{
                     </div>
                  </Form>
                </Tab.Pane> },
-               { menuItem: 'Lieferant bearbeiten', render: () => <Tab.Pane>
-                 <h2 className="head-label">Einen bestehenden Lieferanten bearbeiten</h2>
-                 <Form onSubmit={this.handleCreateSupplier.bind(this)}>
-                    <div>
-                      <span className="input-label">Firma</span>
-                      <Input  placeholder="Firma"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Vorname</span>
-                      <Input required placeholder="Vorname"/>
-                      <span className="input-label-inline" >Nachname</span>
-                      <Input required className="input-text"  placeholder="Nachname"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Straße und Hausnr.</span>
-                      <Input className="input-text"  placeholder="Adresse"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Postleitzahl</span>
-                      <Input  placeholder="Postleitzahl"/>
-                        <span className="input-label-inline" >Ort</span>
-                        <Input className="input-text"  placeholder="Ort"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Land</span>
-                      <Input className="input-text"  placeholder="Land"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Telefonnummer</span>
-                      <Input className="input-text"  placeholder="Telefonnummer"/>
-                    </div>
-                    <div className="input-fields">
-                      <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                      <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                    </div>
-                 </Form>
-               </Tab.Pane> },
                { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
                  <h2 className="head-label">Alle Lieferanten anzeigen</h2>
                  {
@@ -369,7 +298,7 @@ class Home extends React.Component{
                         <List.Item>
                           <List.Content floated="right">
                             <Link to={{ pathname: '/lieferant/priceList', query: {item: item} }}><Button circular icon="euro"></Button></Link>
-                            <Button circular icon="edit"></Button>
+                            <Link to={{ pathname: '/lieferant/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                             <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular icon="remove"></Button>
                           </List.Content>
                           <Image avatar src={avatar} />

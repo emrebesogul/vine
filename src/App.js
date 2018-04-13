@@ -5,7 +5,9 @@ import LagerDetails from './components/Lager_Detail'
 import LagerBearbeiten from './components/Lager_Bearbeiten'
 import Home from './components/Home'
 import KundenDetails from './components/Kunden_Detail'
+import KundeBearbeiten from './components/Kunde_Bearbeiten'
 import LieferantenDetails from './components/Lieferanten_Detail'
+import SupplierEdit from './components/Lieferant_Bearbeiten'
 import PriceList from './components/Preisliste'
 
 class App extends Component {
@@ -18,11 +20,12 @@ class App extends Component {
             <Route exact path='/lager/details' component={LagerDetails} />
             <Route exact path='/lager/edit' component={LagerBearbeiten} />
             <Route exact path='/kunde/details' component={KundenDetails} />
+            <Route exact path='/kunde/edit' component={KundeBearbeiten} />
             <Route exact path='/lieferant/details' component={LieferantenDetails} />
+            <Route exact path='/lieferant/edit' component={SupplierEdit} />
             <Route exact path='/lieferant/priceList' component={PriceList} />
           </Switch>
         </div>
-
     </Router>
     );
   }

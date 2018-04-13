@@ -145,7 +145,7 @@ const call = module.exports = {
 
     /* Edit Supplier */
     editSupplier: function (db, res, supplierData) {
-        db.collection("supplier").update(
+        db.collection("suppliers").update(
             { 
                 _id: ObjectId(supplierData.supplierId) 
             },
