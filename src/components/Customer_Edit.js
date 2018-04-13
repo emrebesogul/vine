@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Icon, Button, Image, Form, Input, Message } from 'semantic-ui-react';
+import { Header, Icon, Button, Form, Input } from 'semantic-ui-react';
 import '../App.css';
 import { Link } from "react-router-dom"
-import wineImage from '../assets/images/wein.png'
 import { getCustomerById } from '../API/POST/PostMethods';
 import { updateCustomer } from '../API/PUT/PutMethods';
 

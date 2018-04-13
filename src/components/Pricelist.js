@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Icon, Button, Image } from 'semantic-ui-react';
+import { Header, Icon, Button } from 'semantic-ui-react';
 import '../App.css';
 import { Link } from "react-router-dom"
-import wineImage from '../assets/images/wein.png'
 import { getSupplierById } from '../API/POST/PostMethods';
 
 class Pricelist extends Component {
