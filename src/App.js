@@ -6,6 +6,7 @@ import LagerBearbeiten from './components/Lager_Bearbeiten'
 import Home from './components/Home'
 import KundenDetails from './components/Kunden_Detail'
 import LieferantenDetails from './components/Lieferanten_Detail'
+import PriceList from './components/Preisliste'
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path='/lager/edit' component={LagerBearbeiten} />
             <Route exact path='/kunde/details' component={KundenDetails} />
             <Route exact path='/lieferant/details' component={LieferantenDetails} />
+            <Route exact path='/lieferant/priceList' component={PriceList} />
           </Switch>
         </div>
 

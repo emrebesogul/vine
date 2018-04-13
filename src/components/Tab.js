@@ -368,7 +368,7 @@ class Home extends React.Component{
                        <List key={index} divided relaxed selection verticalAlign='middle' size="large">
                         <List.Item>
                           <List.Content floated="right">
-                            <Button circular icon="euro"></Button>
+                            <Link to={{ pathname: '/lieferant/priceList', query: {item: item} }}><Button circular icon="euro"></Button></Link>
                             <Button circular icon="edit"></Button>
                             <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular icon="remove"></Button>
                           </List.Content>

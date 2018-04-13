@@ -10,8 +10,7 @@ class LagerDetail extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        productData: [],
-        activeIndex: 0,
+        productData: []
       }
       this.getProduct();
   }
@@ -19,7 +18,6 @@ class LagerDetail extends Component {
   async getProduct() {
       const productData = await getProductById(this.props.location.query.item._id);
       this.setState({productData: productData});
-      this.setState({activeIndex: this.props.location.query.activeIndex});
   }
 
 
