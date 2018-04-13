@@ -243,27 +243,34 @@ const call = module.exports = {
 
     /* Edit Product */
     editProduct: function (db, res, productData) {
-        db.collection("product").update(
-            { 
-                _id: ObjectId(productData.productId) 
-            },
-            { 
-                $set: {
-                    "title" : productData.title,
-                    "year" : productData.year,
-                    "location" : productData.location,
-                    "region" : productData.region,
-                    "country" : productData.country,
-                    "quantity" : parseInt(productData.quantity),
-                    "buyingPrice" : parseFloat(productData.buyingPrice),
-                    "salePrice" : parseFloat(productData.salePrice)
+        if(productData.quantity === "") {
+            productData.quantity = 0;
+        }
+        if ( isNaN(parseInt(productData.quantity)) || parseInt(productData.quantity) < 0) {
+            res.status(200).send(false);
+        } else {
+            db.collection("products").update(
+                { 
+                    _id: ObjectId(productData.productId) 
+                },
+                { 
+                    $set: {
+                        "title" : productData.title,
+                        "year" : productData.year,
+                        "location" : productData.location,
+                        "region" : productData.region,
+                        "country" : productData.country,
+                        "quantity" : parseInt(productData.quantity),
+                        "buyingPrice" : parseFloat(productData.buyingPrice),
+                        "salePrice" : parseFloat(productData.salePrice)
+                    }
+                }, 
+                (err, result) => {
+                    if (err) throw err;
+                    res.status(200).send(true);
                 }
-            }, 
-            (err, result) => {
-                if (err) throw err;
-                res.status(200).send(true);
-            }
-        );
+            );
+        }
     },
 
     /* Increase Product */

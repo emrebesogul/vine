@@ -431,50 +431,6 @@ class Home extends React.Component{
                       <Button id="button-save-lager" className="button-menu">Speichern</Button>
                     </div>
                   </Form>
-
-                </Tab.Pane> },
-                { menuItem: 'Produkt bearbeiten', render: () => <Tab.Pane>
-                  <Form onSubmit={this.handleCreateProduct.bind(this)}>
-                    <h2 className="head-label">Bestehendes Produkt bearbeiten</h2>
-                    <div className="">
-                      <span className="input-label">Bezeichnung</span>
-                      <Input required className="input-text"  placeholder="Bezeichnung"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Jahrgang</span>
-                      <Input className="input-text"  placeholder="Jahrgang"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Lage</span>
-                      <Input className="input-text"  placeholder="Lage"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Region</span>
-                      <Input className="input-text"  placeholder="Region"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Land</span>
-                      <Input className="input-text"  placeholder="Land"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Anzahl</span>
-                      <Input className="input-text"  placeholder="Anzahl"/>
-                      {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Einkaufspreis</span>
-                      <Input className="input-text"  placeholder="Einkaufspreis"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Verkaufspreis</span>
-                      <Input className="input-text"  placeholder="Verkaufspreis"/>
-                    </div>
-                    <div className="input-fields">
-                      <Button type = "reset" onClick={((e) => this.handleCancelCreateProduct(e))} id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
-                      <Button id="button-save-lager" className="button-menu">Speichern</Button>
-                    </div>
-                  </Form>
-
                 </Tab.Pane> },
                 { menuItem: 'Lagerbestand', render: () => <Tab.Pane>
                       <h2 className="head-label">Aktuelle Lagerbestände anzeigen</h2>
@@ -493,7 +449,7 @@ class Home extends React.Component{
                              <List.Content floated="right">
                                <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular icon="plus"></Button>
                                <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular icon="minus"></Button>
-                               <Button className="large-button"  circular icon="edit"></Button>
+                               <Link to={{ pathname: '/lager/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                                <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={wineImage} />
