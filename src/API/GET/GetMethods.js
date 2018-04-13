@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
-var getUrl = window.location;
-var url = getUrl.protocol + "//" + getUrl.hostname + ":8000/rest";
+const getUrl = window.location;
+const url = getUrl.protocol + "//" + getUrl.hostname + ":8000/rest";
 
 export const getCustomers = () => {
     return new Promise((resolve, reject) => {
@@ -20,10 +20,10 @@ export const getCustomers = () => {
     });
 }
 
-export const getProducts = () => {
+export const getSuppliers = () => {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: url + "/product/list",
+            url: url + "/supplier/list",
             dataType:'json',
             cache: false,
             type: "GET",
@@ -37,10 +37,10 @@ export const getProducts = () => {
     });
 }
 
-export const getSuppliers = () => {
+export const getProducts = () => {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: url + "/supplier/list",
+            url: url + "/product/list",
             dataType:'json',
             cache: false,
             type: "GET",
