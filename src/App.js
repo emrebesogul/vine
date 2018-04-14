@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LagerDetails from './components/Lager_Detail'
-import LagerBearbeiten from './components/Lager_Bearbeiten'
 import Home from './components/Home'
-import KundenDetails from './components/Kunden_Detail'
-import LieferantenDetails from './components/Lieferanten_Detail'
+import ProductDetails from './components/Product_Details'
+import EditProduct from './components/Product_Edit'
+import CustomerDetails from './components/Customer_Details'
+import EditCustomer from './components/Customer_Edit'
+import SupplierDetails from './components/Supplier_Details'
+import EditSupplier from './components/Supplier_Edit'
+import Pricelist from './components/Pricelist'
 
 class App extends Component {
   render() {
@@ -14,13 +17,15 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/lager/details' component={LagerDetails} />
-            <Route exact path='/lager/edit' component={LagerBearbeiten} />
-            <Route exact path='/kunde/details' component={KundenDetails} />
-            <Route exact path='/lieferant/details' component={LieferantenDetails} />
+            <Route exact path='/product/details' component={ProductDetails} />
+            <Route exact path='/product/edit' component={EditProduct} />
+            <Route exact path='/customer/details' component={CustomerDetails} />
+            <Route exact path='/customer/edit' component={EditCustomer} />
+            <Route exact path='/supplier/details' component={SupplierDetails} />
+            <Route exact path='/supplier/edit' component={EditSupplier} />
+            <Route exact path='/supplier/pricelist' component={Pricelist} />
           </Switch>
         </div>
-
     </Router>
     );
   }

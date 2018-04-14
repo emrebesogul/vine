@@ -23,7 +23,7 @@ class Home extends React.Component{
           activeIndexCustomers: 1,
           activeIndexProducts: 1,
           activeIndexSuppliers: 1,
-          showErrorMessageQuantity: false
+          showErrorMessage: false
       }
       this.getCustomerData();
       this.getProductData();
@@ -47,41 +47,41 @@ class Home extends React.Component{
 
   async handleDeleteCustomer(event, data) {
       const response = await deleteCustomer(data._id);
-      if(response) {
+      if (response) {
           this.getCustomerData();
       }
   }
 
   async handleDeleteProduct(event, data) {
       const response = await deleteProduct(data._id);
-      if(response) {
+      if (response) {
           this.getProductData();
       }
   }
 
   async handleDeleteSupplier(event, data) {
       const response = await deleteSupplier(data._id);
-      if(response) {
+      if (response) {
           this.getSupplierData();
       }
   }
 
   async handleCreateCustomer(event) {
-    event.preventDefault();
+      event.preventDefault();
 
-    const customerData = {
-      "firstName" : event.target[0].value,
-      "lastName" : event.target[1].value,
-      "street" : event.target[2].value,
-      "postcode" : event.target[3].value,
-      "city" : event.target[4].value,
-      "country" : event.target[5].value,
-      "phoneNumber" : event.target[6].value
-    }
+      const customerData = {
+          "firstName" : event.target[0].value,
+          "lastName" : event.target[1].value,
+          "street" : event.target[2].value,
+          "postcode" : event.target[3].value,
+          "city" : event.target[4].value,
+          "country" : event.target[5].value,
+          "phoneNumber" : event.target[6].value
+      }
 
     const response = await createCustomer(customerData);
 
-    if(response) {
+    if (response) {
         this.getCustomerData();
         this.setState({activeIndexCustomers: 1});
     }
@@ -91,23 +91,23 @@ class Home extends React.Component{
       event.preventDefault();
 
       const productData = {
-        "title" : event.target[0].value,
-        "year" : event.target[1].value,
-        "location" : event.target[2].value,
-        "region" : event.target[3].value,
-        "country" : event.target[4].value,
-        "quantity" : event.target[5].value,
-        "buyingPrice" : event.target[6].value,
-        "salePrice" : event.target[7].value,
+          "title" : event.target[0].value,
+          "year" : event.target[1].value,
+          "location" : event.target[2].value,
+          "region" : event.target[3].value,
+          "country" : event.target[4].value,
+          "quantity" : event.target[5].value,
+          "buyingPrice" : event.target[6].value,
+          "salePrice" : event.target[7].value,
     }
 
       const response = await createProduct(productData);
 
-      if(response) {
+      if (response) {
           this.getProductData();
           this.setState({activeIndexProducts: 1});
       } else {
-          this.setState({ showErrorMessageQuantity: true });
+          this.setState({ showErrorMessage: true });
       }
   }
 
@@ -127,7 +127,7 @@ class Home extends React.Component{
 
       const response = await createSupplier(supplierData);
 
-      if(response) {
+      if (response) {
           this.getSupplierData();
           this.setState({activeIndexSuppliers: 1})
       }
@@ -166,7 +166,7 @@ class Home extends React.Component{
   async handleIncreaseProduct(event, data) {
       event.preventDefault();
       const response = await increaseProduct(data._id);
-      if(response) {
+      if (response) {
           this.getProductData();
       }
   }
@@ -174,7 +174,7 @@ class Home extends React.Component{
   async handleDecreaseProduct(event, data) {
       event.preventDefault();
       const response = await decreaseProduct(data._id);
-      if(response) {
+      if (response) {
           this.getProductData();
       }
   }
@@ -223,40 +223,6 @@ class Home extends React.Component{
                       </div>
                    </Form>
                  </Tab.Pane> },
-                 { menuItem: 'Kunde bearbeiten', render: () => <Tab.Pane>
-
-                    <h2 className="head-label">Einen bestehenden Kunden bearbeiten</h2>
-                    <Form onSubmit={this.handleCreateCustomer.bind(this)}>
-                      <div>
-                        <span className="input-label">Vorname</span>
-                        <Input required placeholder="Vorname"/>
-                        <span className="input-label-inline" >Nachname</span>
-                        <Input required className="input-text"  placeholder="Nachname"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Straße und Hausnr.</span>
-                        <Input className="input-text"  placeholder="Adresse"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Postleitzahl</span>
-                        <Input placeholder="Postleitzahl"/>
-                          <span className="input-label-inline" >Ort</span>
-                          <Input className="input-text"  placeholder="Ort"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Land</span>
-                        <Input className="input-text"  placeholder="Land"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Telefonnummer</span>
-                        <Input className="input-text"  placeholder="Telefonnummer"/>
-                      </div>
-                      <div className="input-fields">
-                        <Button type = "reset" onClick={((e) => this.handleCancelCreateCustomer(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                        <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                      </div>
-                   </Form>
-                 </Tab.Pane> },
                  { menuItem: 'Kundenliste', render: () => <Tab.Pane>
                    <h2 className="head-label">Alle Kunden anzeigen</h2>
                      {customers.map((item, index) => {
@@ -265,12 +231,12 @@ class Home extends React.Component{
                           <List divided relaxed selection verticalAlign='middle' size="large">
                            <List.Item>
                              <List.Content floated="right">
-                               <Button circular icon="edit"></Button>
+                             <Link to={{ pathname: '/customer/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                                <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={avatar} />
                              <List.Content>
-                             <Link to={{ pathname: '/kunde/details', query: item }}>
+                             <Link to={{ pathname: '/customer/details', query: item }}>
                                <List.Header>{item.firstName} {item.lastName}</List.Header>
                                <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
                              </List.Content>
@@ -323,43 +289,6 @@ class Home extends React.Component{
                     </div>
                  </Form>
                </Tab.Pane> },
-               { menuItem: 'Lieferant bearbeiten', render: () => <Tab.Pane>
-                 <h2 className="head-label">Einen bestehenden Lieferanten bearbeiten</h2>
-                 <Form onSubmit={this.handleCreateSupplier.bind(this)}>
-                    <div>
-                      <span className="input-label">Firma</span>
-                      <Input  placeholder="Firma"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Vorname</span>
-                      <Input required placeholder="Vorname"/>
-                      <span className="input-label-inline" >Nachname</span>
-                      <Input required className="input-text"  placeholder="Nachname"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Straße und Hausnr.</span>
-                      <Input className="input-text"  placeholder="Adresse"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Postleitzahl</span>
-                      <Input  placeholder="Postleitzahl"/>
-                        <span className="input-label-inline" >Ort</span>
-                        <Input className="input-text"  placeholder="Ort"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Land</span>
-                      <Input className="input-text"  placeholder="Land"/>
-                    </div>
-                    <div className="input-fields">
-                      <span className="input-label">Telefonnummer</span>
-                      <Input className="input-text"  placeholder="Telefonnummer"/>
-                    </div>
-                    <div className="input-fields">
-                      <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                      <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                    </div>
-                 </Form>
-               </Tab.Pane> },
                { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
                  <h2 className="head-label">Alle Lieferanten anzeigen</h2>
                  {
@@ -368,13 +297,13 @@ class Home extends React.Component{
                        <List key={index} divided relaxed selection verticalAlign='middle' size="large">
                         <List.Item>
                           <List.Content floated="right">
-                            <Button circular icon="euro"></Button>
-                            <Button circular icon="edit"></Button>
+                            <Link to={{ pathname: '/supplier/pricelist', query: {item: item} }}><Button circular icon="euro"></Button></Link>
+                            <Link to={{ pathname: '/supplier/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                             <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular icon="remove"></Button>
                           </List.Content>
                           <Image avatar src={avatar} />
                           <List.Content>
-                          <Link to={{ pathname: '/lieferant/details', query: item }}>
+                          <Link to={{ pathname: '/supplier/details', query: item }}>
                             <List.Header>{item.firstName} {item.lastName}</List.Header>
                             <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
                           </List.Content>
@@ -393,6 +322,7 @@ class Home extends React.Component{
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
                   <Form onSubmit={this.handleCreateProduct.bind(this)}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
+                    {this.state.showErrorMessage ? <Message negative><p>Daten fehlerhaft!</p></Message> : null}
                     <div className="">
                       <span className="input-label">Bezeichnung</span>
                       <Input required className="input-text"  placeholder="Bezeichnung"/>
@@ -416,7 +346,6 @@ class Home extends React.Component{
                     <div className="input-fields">
                       <span className="input-label">Anzahl</span>
                       <Input className="input-text"  placeholder="Anzahl"/>
-                      {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Einkaufspreis</span>
@@ -449,12 +378,12 @@ class Home extends React.Component{
                              <List.Content floated="right">
                                <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular icon="plus"></Button>
                                <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular icon="minus"></Button>
-                               <Link to={{ pathname: '/lager/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
+                               <Link to={{ pathname: '/product/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
                                <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular icon="remove"></Button>
                              </List.Content>
                              <Image avatar src={wineImage} />
                              <List.Content>
-                               <Link to={{ pathname: '/lager/details', query: {item: item} }}>
+                               <Link to={{ pathname: '/product/details', query: {item: item} }}>
                                <List.Header>{item.title}</List.Header>
                                <List.Description>
                                   {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }

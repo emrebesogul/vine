@@ -10,7 +10,7 @@ const url = 'mongodb://127.0.0.1:27017/vine';
 //Enable CORS
 app.use(cors());
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   if (req.method === "OPTIONS") {
@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 });
 
 
-MongoClient.connect(url, function(err, client) {
+MongoClient.connect(url, (err, client) => {
     if (err) {
         console.log('Unable to connect to MongoDB');
         throw err;
@@ -84,7 +84,8 @@ MongoClient.connect(url, function(err, client) {
 
         /* Calls the method editSupplier that updates the supplier data in the database. */
         app.put('/rest/supplier/edit', (req, res) => {
-            database.editSupplier(client.db('vine'), res);
+            let supplierData = req.body.supplierData;
+            database.editSupplier(client.db('vine'), res, supplierData);
         });       
 
         /* Calls the method listProducts that returns all products to the react application. */
@@ -129,7 +130,7 @@ MongoClient.connect(url, function(err, client) {
         });
 
 
-        app.listen(8000, function() {
+        app.listen(8000, () => {
             console.log('Listening for API Requests on port 8000...')
         })
     }

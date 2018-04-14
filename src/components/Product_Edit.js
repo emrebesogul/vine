@@ -6,19 +6,20 @@ import wineImage from '../assets/images/wein.png'
 import { getProductById } from '../API/POST/PostMethods';
 import { updateProduct } from '../API/PUT/PutMethods';
 
-class LagerDetail extends Component {
+class EditProduct extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
+          productId: this.props.location.query.item._id,
           productData: [],
-          showErrorMessageQuantity: false
+          showErrorMessage: false
       }
       this.getProduct();
   }
 
   async getProduct() {
-      const productData = await getProductById(this.props.location.query.item._id);
+      const productData = await getProductById(this.state.productId);
       this.setState({"productData": productData});
       this.setState({"title": productData.title});
       this.setState({"year": productData.year});
@@ -31,7 +32,7 @@ class LagerDetail extends Component {
   }
 
   handleChange(event, data) {
-      switch(data) {
+      switch (data) {
           case "title": this.setState({"title": event.target.value}); break;
           case "year": this.setState({"year": event.target.value}); break;
           case "location": this.setState({"location": event.target.value}); break;
@@ -47,7 +48,7 @@ class LagerDetail extends Component {
   async handleUpdate(event) {
       event.preventDefault();
       const productData = {
-          "productId": this.props.location.query.item._id,
+          "productId": this.state.productId,
           "title" : event.target[0].value,
           "year" : event.target[1].value,
           "location" : event.target[2].value,
@@ -61,10 +62,10 @@ class LagerDetail extends Component {
       const response = await updateProduct(productData);
       this.setState({statusUpdateProduct: response});
 
-      if(response) {
+      if (response) {
           window.location.href = '/';
       } else {
-          this.setState({ showErrorMessageQuantity: true });
+          this.setState({ showErrorMessage: true });
       }
     
   }
@@ -90,6 +91,7 @@ class LagerDetail extends Component {
             <Image id="product-view" size="tiny" src={wineImage} />
               <Form onSubmit={((e) => this.handleUpdate(e))}>
                 <h2 className="head-label">Bestehendes Produkt bearbeiten</h2>
+                {this.state.showErrorMessage ? <Message negative><p>Daten fehlerhaft!</p></Message> : null}
                 <div className="">
                   <span className="input-label">Bezeichnung</span>
                   <Input required className="input-text"  placeholder={this.state.title} value={this.state.title} onChange={(e) => this.handleChange(e,"title")}/>
@@ -113,7 +115,6 @@ class LagerDetail extends Component {
                 <div className="input-fields">
                   <span className="input-label">Anzahl</span>
                   <Input className="input-text" placeholder={this.state.quantity} value={this.state.quantity} onChange={(e) => this.handleChange(e,"quantity")}/>
-                  {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Einkaufspreis</span>
@@ -128,7 +129,6 @@ class LagerDetail extends Component {
                   <Button id="button-save-lager" className="button-menu">Speichern</Button>
                 </div>
               </Form>
-
           </div>
         </div>
       </div>
@@ -136,4 +136,4 @@ class LagerDetail extends Component {
   }
 }
 
-export default LagerDetail;
+export default EditProduct;

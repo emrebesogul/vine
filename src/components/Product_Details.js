@@ -5,13 +5,12 @@ import { Link } from "react-router-dom"
 import wineImage from '../assets/images/wein.png'
 import { getProductById } from '../API/POST/PostMethods';
 
-class LagerDetail extends Component {
+class ProductDetails extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
-        productData: [],
-        activeIndex: 0,
+          productData: []
       }
       this.getProduct();
   }
@@ -19,7 +18,6 @@ class LagerDetail extends Component {
   async getProduct() {
       const productData = await getProductById(this.props.location.query.item._id);
       this.setState({productData: productData});
-      this.setState({activeIndex: this.props.location.query.activeIndex});
   }
 
 
@@ -68,11 +66,11 @@ class LagerDetail extends Component {
             </div>
             <div>
               <span className="detail-label"> Verkaufspreis:</span>
-              <span className="label-content"> {this.state.productData.salePrice} </span>
+              {this.state.productData.salePrice !== "" ? <span className="label-content"> {this.state.productData.salePrice} € </span> : null}
             </div>
             <div>
               <span className="detail-label"> Einkaufspreis:</span>
-              <span className="label-content"> {this.state.productData.buyingPrice} </span>
+              {this.state.productData.buyingPrice !== "" ? <span className="label-content"> {this.state.productData.buyingPrice} € </span> : null}
             </div>
 
           </div>
@@ -82,4 +80,4 @@ class LagerDetail extends Component {
   }
 }
 
-export default LagerDetail;
+export default ProductDetails;
