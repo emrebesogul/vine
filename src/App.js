@@ -26,7 +26,7 @@ class App extends Component {
             <Route exact path='/supplier/pricelist' component={Pricelist} />
           </Switch>
         </div>
-    </Router>
+      </Router>
     );
   }
 }

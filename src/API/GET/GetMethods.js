@@ -13,7 +13,7 @@ export const getCustomers = () => {
             success: function(res) {
                 resolve(res);
             },
-            error: function(xhr, status, err){
+            error: function(xhr, status, err) {
                 reject(err);
             }
         });
@@ -30,7 +30,7 @@ export const getSuppliers = () => {
             success: function(res) {
                 resolve(res);
             },
-            error: function(xhr, status, err){
+            error: function(xhr, status, err) {
                 reject(err);
             }
         });
@@ -47,7 +47,7 @@ export const getProducts = () => {
             success: function(res) {
                 resolve(res);
             },
-            error: function(xhr, status, err){
+            error: function(xhr, status, err) {
                 reject(err);
             }
         });

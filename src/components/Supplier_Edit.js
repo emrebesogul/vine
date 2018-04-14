@@ -9,6 +9,7 @@ class EditSupplier extends Component {
 
   constructor(props) {
       super(props);
+
       this.state = {
           supplierId: this.props.location.query.item._id,
           supplierData: []
@@ -85,34 +86,44 @@ class EditSupplier extends Component {
               <h2 className="head-label">Einen bestehenden Lieferanten bearbeiten</h2>
               <div>
                 <span className="input-label">Firma</span>
-                <Input  placeholder={this.state.company} value={this.state.company} onChange={(e) => this.handleChange(e,"company")}/>
+                <Input  placeholder={this.state.company} value={this.state.company} 
+                    onChange={(e) => this.handleChange(e,"company")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Vorname</span>
-                <Input required placeholder={this.state.firstName} value={this.state.firstName} onChange={(e) => this.handleChange(e,"firstName")}/>
+                <Input required placeholder={this.state.firstName} value={this.state.firstName} 
+                    onChange={(e) => this.handleChange(e,"firstName")}/>
                 <span className="input-label-inline" >Nachname</span>
-                <Input required className="input-text" placeholder={this.state.lastName} value={this.state.lastName} onChange={(e) => this.handleChange(e,"lastName")}/>
+                <Input required className="input-text" placeholder={this.state.lastName} value={this.state.lastName} 
+                    onChange={(e) => this.handleChange(e,"lastName")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Straße und Hausnr.</span>
-                <Input className="input-text" placeholder={this.state.street} value={this.state.street} onChange={(e) => this.handleChange(e,"street")}/>
+                <Input className="input-text" placeholder={this.state.street} value={this.state.street} 
+                    onChange={(e) => this.handleChange(e,"street")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Postleitzahl</span>
-                <Input placeholder={this.state.postcode} value={this.state.postcode} onChange={(e) => this.handleChange(e,"postcode")}/>
+                <Input placeholder={this.state.postcode} value={this.state.postcode} 
+                    onChange={(e) => this.handleChange(e,"postcode")}/>
                   <span className="input-label-inline" >Ort</span>
-                  <Input className="input-text" placeholder={this.state.city} value={this.state.city} onChange={(e) => this.handleChange(e,"city")}/>
+                  <Input className="input-text" placeholder={this.state.city} value={this.state.city} 
+                      onChange={(e) => this.handleChange(e,"city")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Land</span>
-                <Input className="input-text" placeholder={this.state.country} value={this.state.country} onChange={(e) => this.handleChange(e,"country")}/>
+                <Input className="input-text" placeholder={this.state.country} value={this.state.country} 
+                    onChange={(e) => this.handleChange(e,"country")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Telefonnummer</span>
-                <Input className="input-text" placeholder={this.state.phoneNumber} value={this.state.phoneNumber} onChange={(e) => this.handleChange(e,"phoneNumber")}/>
+                <Input className="input-text" placeholder={this.state.phoneNumber} value={this.state.phoneNumber} 
+                    onChange={(e) => this.handleChange(e,"phoneNumber")}/>
               </div>
               <div className="input-fields">
-                <Link to={{ pathname: '/', query: {item: "item"} }}><Button type ="reset" id="button-cancel-lager" align="right" className="button-menu">Zurück</Button></Link>
+                <Link to={{ pathname: '/', query: {item: "item"} }}>
+                  <Button type ="reset" id="button-cancel-lager" align="right" className="button-menu">Zurück</Button>
+                </Link>
                 <Button id="button-save-lager" className="button-menu">Speichern</Button>
               </div>
             </Form>

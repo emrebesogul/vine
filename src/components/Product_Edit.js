@@ -10,6 +10,7 @@ class EditProduct extends Component {
 
   constructor(props) {
       super(props);
+
       this.state = {
           productId: this.props.location.query.item._id,
           productData: [],
@@ -94,38 +95,48 @@ class EditProduct extends Component {
                 {this.state.showErrorMessage ? <Message negative><p>Daten fehlerhaft!</p></Message> : null}
                 <div className="">
                   <span className="input-label">Bezeichnung</span>
-                  <Input required className="input-text"  placeholder={this.state.title} value={this.state.title} onChange={(e) => this.handleChange(e,"title")}/>
+                  <Input required className="input-text"  placeholder={this.state.title} value={this.state.title} 
+                      onChange={(e) => this.handleChange(e,"title")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Jahrgang</span>
-                  <Input className="input-text" placeholder={this.state.year} value={this.state.year} onChange={(e) => this.handleChange(e,"year")}/>
+                  <Input className="input-text" placeholder={this.state.year} value={this.state.year} 
+                      onChange={(e) => this.handleChange(e,"year")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Lage</span>
-                  <Input className="input-text" placeholder={this.state.location} value={this.state.location} onChange={(e) => this.handleChange(e,"location")}/>
+                  <Input className="input-text" placeholder={this.state.location} value={this.state.location} 
+                      onChange={(e) => this.handleChange(e,"location")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Region</span>
-                  <Input className="input-text" placeholder={this.state.region} value={this.state.region} onChange={(e) => this.handleChange(e,"region")}/>
+                  <Input className="input-text" placeholder={this.state.region} value={this.state.region}
+                      onChange={(e) => this.handleChange(e,"region")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Land</span>
-                  <Input className="input-text" placeholder={this.state.country} value={this.state.country} onChange={(e) => this.handleChange(e,"country")}/>
+                  <Input className="input-text" placeholder={this.state.country} value={this.state.country} 
+                      onChange={(e) => this.handleChange(e,"country")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Anzahl</span>
-                  <Input className="input-text" placeholder={this.state.quantity} value={this.state.quantity} onChange={(e) => this.handleChange(e,"quantity")}/>
+                  <Input className="input-text" placeholder={this.state.quantity} value={this.state.quantity} 
+                      onChange={(e) => this.handleChange(e,"quantity")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Einkaufspreis</span>
-                  <Input className="input-text" placeholder={this.state.buyingPrice} value={this.state.buyingPrice} onChange={(e) => this.handleChange(e,"buyingPrice")}/>
+                  <Input className="input-text" placeholder={this.state.buyingPrice} value={this.state.buyingPrice} 
+                      onChange={(e) => this.handleChange(e,"buyingPrice")}/>
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Verkaufspreis</span>
-                  <Input className="input-text" placeholder={this.state.salePrice} value={this.state.salePrice} onChange={(e) => this.handleChange(e,"salePrice")}/>
+                  <Input className="input-text" placeholder={this.state.salePrice} value={this.state.salePrice} 
+                      onChange={(e) => this.handleChange(e,"salePrice")}/>
                 </div>
                 <div className="input-fields">
-                  <Link to={{ pathname: '/', query: {item: "item"} }}><Button type ="reset" id="button-cancel-lager" align="right" className="button-menu">Zurück</Button></Link>
+                  <Link to={{ pathname: '/', query: {item: "item"} }}>
+                    <Button type ="reset" id="button-cancel-lager" align="right" className="button-menu">Zurück</Button>
+                  </Link>
                   <Button id="button-save-lager" className="button-menu">Speichern</Button>
                 </div>
               </Form>

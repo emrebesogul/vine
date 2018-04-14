@@ -14,7 +14,7 @@ export const createCustomer = (customerData) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -32,7 +32,7 @@ export const deleteCustomer = (customerId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -50,7 +50,7 @@ export const getCustomerById = (customerId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -68,7 +68,7 @@ export const createSupplier = (supplierData) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -86,7 +86,7 @@ export const deleteSupplier = (supplierId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -104,7 +104,7 @@ export const getSupplierById = (supplierId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -122,7 +122,7 @@ export const createProduct = (productData) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -140,7 +140,7 @@ export const deleteProduct = (productId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -158,7 +158,7 @@ export const getProductById = (productId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -176,7 +176,7 @@ export const increaseProduct = (productId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });
@@ -194,7 +194,7 @@ export const decreaseProduct = (productId) => {
           success: function(res) {
               resolve(res);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
               reject(err);
           }
         });

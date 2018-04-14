@@ -3,7 +3,7 @@ import $ from 'jquery';
 const getUrl = window.location;
 const url = getUrl.protocol + "//" + getUrl.hostname + ":8000/rest";
 
-export const updateCustomer=(customerData)=>{
+export const updateCustomer=(customerData) => {
     return new Promise((resolve, reject) => {
         $.ajax({
           url: url + "/customer/edit",
@@ -13,14 +13,14 @@ export const updateCustomer=(customerData)=>{
           success: function(data) {
             resolve(data);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
             reject(err);
           }
       });
     });
 }
 
-export const updateSupplier=(supplierData)=>{
+export const updateSupplier=(supplierData) => {
     return new Promise((resolve, reject) => {
         $.ajax({
           url: url + "/supplier/edit",
@@ -30,14 +30,14 @@ export const updateSupplier=(supplierData)=>{
           success: function(data) {
             resolve(data);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
             reject(err);
           }
       });
     });
 }
 
-export const updateProduct=(productData)=>{
+export const updateProduct=(productData) => {
     return new Promise((resolve, reject) => {
         $.ajax({
           url: url + "/product/edit",
@@ -47,7 +47,7 @@ export const updateProduct=(productData)=>{
           success: function(data) {
             resolve(data);
           },
-          error: function(xhr, status, err){
+          error: function(xhr, status, err) {
             reject(err);
           }
       });

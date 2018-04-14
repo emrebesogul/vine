@@ -1,11 +1,11 @@
-.input-label{
+.input-label {
   margin-right: 20px;
-    width: 130px !important;
-    display: block;
-    line-height: 35px;
-    float: left;
-    margin-left: -5px;
-    text-align: right;
+  width: 130px !important;
+  display: block;
+  line-height: 35px;
+  float: left;
+  margin-left: -5px;
+  text-align: right;
 }
 
 .input-label-inline {
@@ -16,33 +16,33 @@
   text-align: right;
 }
 
-.head-label{
+.head-label {
   margin-left: 5px;
   margin-bottom: 35px;
   border-bottom: solid 1px black;
   width: auto;
 }
 
-div.four.wide.column{
+div.four.wide.column {
   margin-left: -15px !important;
   width: 20% !important;
 }
 
-.modal-wrapper{
+.modal-wrapper {
   background: rgba(40,40,40, 0.3);
   width: 100vw;
   height: 100vh;
 }
 
-.large-button{
+.large-button {
   margin-top: 17px !important;
 }
 
-.input-fields{
+.input-fields {
   margin-top: 30px;
 }
 
-.print-sale-button{
+.print-sale-button {
   clear: both;
   margin-top: 20px !important;
 }
@@ -51,12 +51,12 @@ div.four.wide.column{
   margin-bottom: 20px;
 }
 
-#sales-button{
+#sales-button {
   margin-top: 25px;
   margin-left: 45px;
 }
 
-#search-lager{
+#search-lager {
   float: left;
 }
 
@@ -65,7 +65,7 @@ div.four.wide.column{
   margin-top: 15px !important;
 }
 
-.input-fields-inline{
+.input-fields-inline {
   display: inline-block;
   margin-left: 20px;
 }
@@ -75,17 +75,17 @@ div.ui.segment.active.tab {
 }
 
 div.ui.bottom.attached.segment.active.tab {
-    border: none;
-    border-left: solid 1px rgb(210,210,210);
-    margin-top: 0px !important;
-    padding-left: 30px;
+  border: none;
+  border-left: solid 1px rgb(210,210,210);
+  margin-top: 0px !important;
+  padding-left: 30px;
 }
 
-#button-cancel-kunde{
+#button-cancel-kunde {
   margin-left: 10px;
 }
 
-#button-cancel-lager{
+#button-cancel-lager {
   margin-left: 10px;
 }
 

@@ -8,6 +8,7 @@ class SupplierDetails extends Component {
 
   constructor(props) {
       super(props);
+
       this.state = {
           supplierData: []
       }
@@ -18,7 +19,6 @@ class SupplierDetails extends Component {
       const supplierData = await getSupplierById(this.props.location.query._id);
       this.setState({supplierData: supplierData});
   }
-
 
   render() {
     return (
