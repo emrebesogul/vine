@@ -22,8 +22,9 @@ class Pricelist extends Component {
       if (supplierData.company !== "") {
           this.setState({showCompany: true});
       }
-      // const priceList = await getPriceList(this.props.location.query.item._id);
-      // this.setState({priceList: priceList});
+      /* Not implemeted yet
+      const priceList = await getPriceList(this.props.location.query.item._id);
+      this.setState({priceList: priceList}); */
   }
 
   render() {
@@ -43,8 +44,10 @@ class Pricelist extends Component {
             <Button id="button-back">Zurück</Button>
             </Link>
           <div className="ui segment">
-            {this.state.showCompany ? <h2 className="head-label"> Preisliste Firma {this.state.supplierData.company}</h2> : <h2 className="head-label"> Preisliste {this.state.supplierData.firstName} {this.state.supplierData.lastName}</h2> }
-            
+            {this.state.showCompany ? 
+              <h2 className="head-label"> Preisliste Firma {this.state.supplierData.company}</h2> : 
+              <h2 className="head-label"> Preisliste {this.state.supplierData.firstName} {this.state.supplierData.lastName}</h2> 
+            }
           </div>
         </div>
       </div>

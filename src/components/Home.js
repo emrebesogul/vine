@@ -27,7 +27,6 @@ class Home extends Component {
             <Tab />
           </div>
         </div>
-
     );
   }
 }

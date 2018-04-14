@@ -5,14 +5,15 @@ import wineImage from '../assets/images/wine-bottle.png'
 import { Link } from "react-router-dom";
 import './components.css';
 import { getCustomers, getProducts, getSuppliers } from '../API/GET/GetMethods';
-import { createCustomer, createProduct, createSupplier, deleteCustomer, deleteProduct, deleteSupplier, increaseProduct, decreaseProduct } from '../API/POST/PostMethods';
+import { createCustomer, createProduct, createSupplier, deleteCustomer, deleteProduct, deleteSupplier, increaseProduct, 
+    decreaseProduct } from '../API/POST/PostMethods';
 
 var products = [];
 var supplier = [];
 var customers = [];
 
 
-class Home extends React.Component{
+class Home extends React.Component {
 
   constructor(props) {
       super(props);
@@ -179,80 +180,84 @@ class Home extends React.Component{
       }
   }
 
-  render(){
+  render() {
     customers = this.state.customerData;
     products = this.state.productData;
     supplier = this.state.supplierData;
     return(
         <Tab onTabChange={this.handleTabChangeMenu.bind(this)} menu={{ secondary: true, pointing: true }} panes={
           [
-           { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
-           <Tab onTabChange={this.handleTabChangeCustomers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
-               [
-                 { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
-
-                    <h2 className="head-label">Neuen Kunden anlegen</h2>
-                    <Form onSubmit={this.handleCreateCustomer.bind(this)}>
-                      <div>
-                        <span className="input-label">Vorname</span>
-                        <Input required placeholder="Vorname"/>
-                        <span className="input-label-inline" >Nachname</span>
-                        <Input required className="input-text"  placeholder="Nachname"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Straße und Hausnr.</span>
-                        <Input className="input-text"  placeholder="Adresse"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Postleitzahl</span>
-                        <Input placeholder="Postleitzahl"/>
-                          <span className="input-label-inline" >Ort</span>
-                          <Input className="input-text"  placeholder="Ort"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Land</span>
-                        <Input className="input-text"  placeholder="Land"/>
-                      </div>
-                      <div className="input-fields">
-                        <span className="input-label">Telefonnummer</span>
-                        <Input className="input-text"  placeholder="Telefonnummer"/>
-                      </div>
-                      <div className="input-fields">
-                        <Button type = "reset" onClick={((e) => this.handleCancelCreateCustomer(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
-                        <Button id="button-save-kunde" className="button-menu">Speichern</Button>
-                      </div>
-                   </Form>
-                 </Tab.Pane> },
-                 { menuItem: 'Kundenliste', render: () => <Tab.Pane>
-                   <h2 className="head-label">Alle Kunden anzeigen</h2>
-                     {customers.map((item, index) => {
-                       return(
-                         <div key={index}>
+            { menuItem: 'Kundenverwaltung', render: () => <Tab.Pane attached={false}>
+            <Tab onTabChange={this.handleTabChangeCustomers.bind(this)} 
+                menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+              [
+                { menuItem: 'Kunde anlegen', render: () => <Tab.Pane>
+                  <h2 className="head-label">Neuen Kunden anlegen</h2>
+                  <Form onSubmit={this.handleCreateCustomer.bind(this)}>
+                    <div>
+                      <span className="input-label">Vorname</span>
+                      <Input required placeholder="Vorname"/>
+                      <span className="input-label-inline" >Nachname</span>
+                      <Input required className="input-text"  placeholder="Nachname"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Straße und Hausnr.</span>
+                      <Input className="input-text"  placeholder="Adresse"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Postleitzahl</span>
+                      <Input placeholder="Postleitzahl"/>
+                        <span className="input-label-inline" >Ort</span>
+                        <Input className="input-text"  placeholder="Ort"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Land</span>
+                      <Input className="input-text"  placeholder="Land"/>
+                    </div>
+                    <div className="input-fields">
+                      <span className="input-label">Telefonnummer</span>
+                      <Input className="input-text"  placeholder="Telefonnummer"/>
+                    </div>
+                    <div className="input-fields">
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateCustomer(e))} id="button-cancel-kunde" 
+                        align="right" className="button-menu">Abbrechen</Button>
+                      <Button id="button-save-kunde" className="button-menu">Speichern</Button>
+                    </div>
+                  </Form>
+                </Tab.Pane> },
+                { menuItem: 'Kundenliste', render: () => <Tab.Pane>
+                  <h2 className="head-label">Alle Kunden anzeigen</h2>
+                    {customers.map((item, index) => {
+                      return(
+                        <div key={index}>
                           <List divided relaxed selection verticalAlign='middle' size="large">
-                           <List.Item>
-                             <List.Content floated="right">
-                             <Link to={{ pathname: '/customer/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
-                               <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular icon="remove"></Button>
-                             </List.Content>
-                             <Image avatar src={avatar} />
-                             <List.Content>
-                             <Link to={{ pathname: '/customer/details', query: item }}>
-                               <List.Header>{item.firstName} {item.lastName}</List.Header>
-                               <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
-                             </List.Content>
-                           </List.Item>
-                         </List>
-                       </div>
-                       )
-                     })}
-                 </Tab.Pane> },
-               ]
-               } activeIndex={this.state.activeIndexCustomers} />
-           </Tab.Pane> },
-           { menuItem: 'Lieferanten- und Winzerverwaltung', render: () => <Tab.Pane attached={false}>
-           <Tab onTabChange={this.handleTabChangeSuppliers.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
-             [
-               { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
+                            <List.Item>
+                              <List.Content floated="right">
+                              <Link to={{ pathname: '/customer/edit', query: {item: item} }}>
+                                <Button className="large-button"  circular icon="edit"></Button>
+                              </Link>
+                                <Button onClick={((e) => this.handleDeleteCustomer(e, item))} circular icon="remove"></Button>
+                              </List.Content>
+                              <Image avatar src={avatar} />
+                              <List.Content>
+                              <Link to={{ pathname: '/customer/details', query: item }}>
+                                <List.Header>{item.firstName} {item.lastName}</List.Header>
+                                <List.Description>{item.street} {item.postcode} {item.city}</List.Description></Link>
+                              </List.Content>
+                            </List.Item>
+                          </List>
+                        </div>
+                      )
+                    })}
+                  </Tab.Pane> },
+              ] 
+            } activeIndex={this.state.activeIndexCustomers} />
+            </Tab.Pane> },
+            { menuItem: 'Lieferanten- und Winzerverwaltung', render: () => <Tab.Pane attached={false}>
+            <Tab onTabChange={this.handleTabChangeSuppliers.bind(this)} 
+                menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+              [
+                { menuItem: 'Lieferant anlegen', render: () => <Tab.Pane>
                  <h2 className="head-label">Neuen Lieferanten anlegen</h2>
                  <Form onSubmit={this.handleCreateSupplier.bind(this)}>
                     <div>
@@ -284,21 +289,25 @@ class Home extends React.Component{
                       <Input className="input-text"  placeholder="Telefonnummer"/>
                     </div>
                     <div className="input-fields">
-                      <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" align="right" className="button-menu">Abbrechen</Button>
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateSupplier(e))} id="button-cancel-kunde" 
+                          align="right" className="button-menu">Abbrechen</Button>
                       <Button id="button-save-kunde" className="button-menu">Speichern</Button>
                     </div>
-                 </Form>
-               </Tab.Pane> },
-               { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
-                 <h2 className="head-label">Alle Lieferanten anzeigen</h2>
-                 {
-                   supplier.map((item, index) =>{
-                     return(
-                       <List key={index} divided relaxed selection verticalAlign='middle' size="large">
+                  </Form>
+                </Tab.Pane> },
+                { menuItem: 'Lieferantenliste', render: () => <Tab.Pane>
+                  <h2 className="head-label">Alle Lieferanten anzeigen</h2>
+                    { supplier.map((item, index) =>{
+                      return(
+                        <List key={index} divided relaxed selection verticalAlign='middle' size="large">
                         <List.Item>
                           <List.Content floated="right">
-                            <Link to={{ pathname: '/supplier/pricelist', query: {item: item} }}><Button circular icon="euro"></Button></Link>
-                            <Link to={{ pathname: '/supplier/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
+                            <Link to={{ pathname: '/supplier/pricelist', query: {item: item} }}>
+                              <Button circular icon="euro"></Button>
+                            </Link>
+                            <Link to={{ pathname: '/supplier/edit', query: {item: item} }}>
+                              <Button className="large-button"  circular icon="edit"></Button>
+                            </Link>
                             <Button onClick={((e) => this.handleDeleteSupplier(e, item))} circular icon="remove"></Button>
                           </List.Content>
                           <Image avatar src={avatar} />
@@ -309,16 +318,16 @@ class Home extends React.Component{
                           </List.Content>
                         </List.Item>
                       </List>
-                     )
-                   })}
-
-               </Tab.Pane> },
-             ]
-               } activeIndex={this.state.activeIndexSuppliers} />
-           </Tab.Pane> },
-           { menuItem: 'Lagerverwaltung', render: () => <Tab.Pane attached={false}>
-             <Tab onTabChange={this.handleTabChangeProducts.bind(this)} menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
-               [
+                      )
+                    })}
+                </Tab.Pane> },
+              ]
+            } activeIndex={this.state.activeIndexSuppliers} />
+            </Tab.Pane> },
+            { menuItem: 'Lagerverwaltung', render: () => <Tab.Pane attached={false}>
+            <Tab onTabChange={this.handleTabChangeProducts.bind(this)} 
+                menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={
+              [
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
                   <Form onSubmit={this.handleCreateProduct.bind(this)}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
@@ -356,52 +365,56 @@ class Home extends React.Component{
                       <Input className="input-text"  placeholder="Verkaufspreis"/>
                     </div>
                     <div className="input-fields">
-                      <Button type = "reset" onClick={((e) => this.handleCancelCreateProduct(e))} id="button-cancel-lager" align="right" className="button-menu">Abbrechen</Button>
+                      <Button type = "reset" onClick={((e) => this.handleCancelCreateProduct(e))} id="button-cancel-lager" 
+                          align="right" className="button-menu">Abbrechen</Button>
                       <Button id="button-save-lager" className="button-menu">Speichern</Button>
                     </div>
                   </Form>
                 </Tab.Pane> },
                 { menuItem: 'Lagerbestand', render: () => <Tab.Pane>
-                      <h2 className="head-label">Aktuelle Lagerbestände anzeigen</h2>
-                      <div className="ui search">
-                        <div className="ui icon input">
-                          <input id="search-lager" className="prompt" type="text" placeholder="Nach Produkten suchen..."/>
-                          <i className="search icon"></i>
-                        </div>
-                        <div className="results"></div>
+                  <h2 className="head-label">Aktuelle Lagerbestände anzeigen</h2>
+                    <div className="ui search">
+                      <div className="ui icon input">
+                        <input id="search-lager" className="prompt" type="text" placeholder="Nach Produkten suchen..."/>
+                        <i className="search icon"></i>
                       </div>
-
-                     {products.map((item, index) => {
-                       return(
-                         <List key={index} divided relaxed selection verticalAlign='middle' size="large">
-                           <List.Item>
-                             <List.Content floated="right">
-                               <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  circular icon="plus"></Button>
-                               <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  circular icon="minus"></Button>
-                               <Link to={{ pathname: '/product/edit', query: {item: item} }}><Button className="large-button"  circular icon="edit"></Button></Link>
-                               <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  circular icon="remove"></Button>
-                             </List.Content>
-                             <Image avatar src={wineImage} />
-                             <List.Content>
-                               <Link to={{ pathname: '/product/details', query: {item: item} }}>
-                               <List.Header>{item.title}</List.Header>
-                               <List.Description>
-                                  {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }
-                               </List.Description>
-                               <List.Description>{item.origin}</List.Description>
-                               <List.Description>{item.year}</List.Description></Link>
-                             </List.Content>
-                           </List.Item>
-                        </List>
-                       )
-                     })}
-
+                      <div className="results"></div>
+                    </div>
+                     { products.map((item, index) => {
+                        return(
+                          <List key={index} divided relaxed selection verticalAlign='middle' size="large">
+                            <List.Item>
+                              <List.Content floated="right">
+                                <Button onClick={((e) => this.handleIncreaseProduct(e, item))} className="large-button"  
+                                    circular icon="plus"></Button>
+                                <Button onClick={((e) => this.handleDecreaseProduct(e, item))} className="large-button"  
+                                    circular icon="minus"></Button>
+                                <Link to={{ pathname: '/product/edit', query: {item: item} }}>
+                                  <Button className="large-button"  circular icon="edit"></Button>
+                                </Link>
+                                <Button onClick={((e) => this.handleDeleteProduct(e, item))} className="large-button"  
+                                    circular icon="remove"></Button>
+                              </List.Content>
+                              <Image avatar src={wineImage} />
+                              <List.Content>
+                                <Link to={{ pathname: '/product/details', query: {item: item} }}>
+                                <List.Header>{item.title}</List.Header>
+                                <List.Description>
+                                    {item.available ? <p>Auf Lager: {item.quantity}</p> : <p>Nicht verfügbar</p> }
+                                </List.Description>
+                                <List.Description>{item.origin}</List.Description>
+                                <List.Description>{item.year}</List.Description></Link>
+                              </List.Content>
+                            </List.Item>
+                          </List>
+                        )
+                      })}
                 </Tab.Pane> },
               ]
-               } activeIndex={this.state.activeIndexProducts}/>
-           </Tab.Pane> },
-         ]
-      } />
+            } activeIndex={this.state.activeIndexProducts}/>
+            </Tab.Pane> },
+          ]
+        } />
     )
   }
 }
