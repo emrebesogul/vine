@@ -19,7 +19,7 @@ class Pricelist extends Component {
   async getSupplier() {
       const supplierData = await getSupplierById(this.props.location.query.item._id);
       this.setState({supplierData: supplierData});
-      if(supplierData.company !== "") {
+      if (supplierData.company !== "") {
           this.setState({showCompany: true});
       }
       // const priceList = await getPriceList(this.props.location.query.item._id);

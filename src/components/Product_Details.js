@@ -66,11 +66,11 @@ class ProductDetails extends Component {
             </div>
             <div>
               <span className="detail-label"> Verkaufspreis:</span>
-              <span className="label-content"> {this.state.productData.salePrice} </span>
+              {this.state.productData.salePrice !== "" ? <span className="label-content"> {this.state.productData.salePrice} € </span> : null}
             </div>
             <div>
               <span className="detail-label"> Einkaufspreis:</span>
-              <span className="label-content"> {this.state.productData.buyingPrice} </span>
+              {this.state.productData.buyingPrice !== "" ? <span className="label-content"> {this.state.productData.buyingPrice} € </span> : null}
             </div>
 
           </div>

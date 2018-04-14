@@ -187,7 +187,9 @@ const call = module.exports = {
         ]).toArray((err, result) => {
             if (err) throw err;
             result.map(item => {
-                if(item.quantity > 0) {
+                item.salePrice = item.salePrice.replace('.',',');
+                item.buyingPrice = item.buyingPrice.replace('.',',');
+                if (item.quantity > 0) {
                     item.available = true;
                 } else {
                     item.available = false;
@@ -199,10 +201,22 @@ const call = module.exports = {
 
     /* Create Product */
     createProduct: function (db, res, productData) {
-        if(productData.quantity === "") {
+        if (productData.quantity === "") {
             productData.quantity = 0;
         }
-        if ( isNaN(parseInt(productData.quantity)) || parseInt(productData.quantity) < 0) {
+        if (productData.salePrice != "") {
+            productData.salePrice = parseFloat(productData.salePrice.replace(',','.')).toFixed(2);
+        }
+        if (productData.buyingPrice != "") {
+            productData.buyingPrice = parseFloat(productData.buyingPrice.replace(',','.')).toFixed(2);
+        }
+        if (isNaN(parseInt(productData.quantity)) 
+            || parseInt(productData.quantity) < 0
+            || isNaN(parseFloat(productData.salePrice)) && productData.salePrice != "" 
+            || isNaN(parseFloat(productData.buyingPrice)) && productData.buyingPrice != "" 
+            || parseFloat(productData.salePrice) < 0
+            || parseFloat(productData.buyingPrice) < 0
+        ) {
             res.status(200).send(false);
         } else {
             db.collection('products').insert({
@@ -212,8 +226,8 @@ const call = module.exports = {
                 "region" : productData.region,
                 "country" : productData.country,
                 "quantity" : parseInt(productData.quantity),
-                "buyingPrice" : parseFloat(productData.buyingPrice),
-                "salePrice" : parseFloat(productData.salePrice)
+                "buyingPrice" : productData.buyingPrice,
+                "salePrice" : productData.salePrice
             }, (err, result) => {
                 if (err) throw err;
                 res.status(200).send(true);
@@ -237,16 +251,30 @@ const call = module.exports = {
             }, 
             (err_find_product, res_find_product) => {
                 if (err_find_product) err_find_product;
+                res_find_product.salePrice = res_find_product.salePrice.replace('.',',');
+                res_find_product.buyingPrice = res_find_product.buyingPrice.replace('.',',');
                 res.status(200).send(res_find_product);
             });
     },
 
     /* Edit Product */
     editProduct: function (db, res, productData) {
-        if(productData.quantity === "") {
+        if (productData.quantity === "") {
             productData.quantity = 0;
         }
-        if ( isNaN(parseInt(productData.quantity)) || parseInt(productData.quantity) < 0) {
+        if (productData.salePrice != "") {
+            productData.salePrice = parseFloat(productData.salePrice.replace(',','.')).toFixed(2);
+        }
+        if (productData.buyingPrice != "") {
+            productData.buyingPrice = parseFloat(productData.buyingPrice.replace(',','.')).toFixed(2);
+        }
+        if (isNaN(parseInt(productData.quantity)) 
+            || parseInt(productData.quantity) < 0
+            || isNaN(parseFloat(productData.salePrice)) && productData.salePrice != "" 
+            || isNaN(parseFloat(productData.buyingPrice)) && productData.buyingPrice != "" 
+            || parseFloat(productData.salePrice) < 0
+            || parseFloat(productData.buyingPrice) < 0
+        ) {
             res.status(200).send(false);
         } else {
             db.collection("products").update(
@@ -261,8 +289,8 @@ const call = module.exports = {
                         "region" : productData.region,
                         "country" : productData.country,
                         "quantity" : parseInt(productData.quantity),
-                        "buyingPrice" : parseFloat(productData.buyingPrice),
-                        "salePrice" : parseFloat(productData.salePrice)
+                        "buyingPrice" : productData.buyingPrice,
+                        "salePrice" : productData.salePrice
                     }
                 }, 
                 (err, result) => {
@@ -297,7 +325,7 @@ const call = module.exports = {
             }, 
             (err_find_product, res_find_product) => {
                 if (err_find_product) err_find_product;
-                if(res_find_product.quantity > 0) {
+                if (res_find_product.quantity > 0) {
                     res_find_product.quantity = res_find_product.quantity - 1;
                     db.collection("products").update(
                         { 

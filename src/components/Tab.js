@@ -23,7 +23,7 @@ class Home extends React.Component{
           activeIndexCustomers: 1,
           activeIndexProducts: 1,
           activeIndexSuppliers: 1,
-          showErrorMessageQuantity: false
+          showErrorMessage: false
       }
       this.getCustomerData();
       this.getProductData();
@@ -47,21 +47,21 @@ class Home extends React.Component{
 
   async handleDeleteCustomer(event, data) {
       const response = await deleteCustomer(data._id);
-      if(response) {
+      if (response) {
           this.getCustomerData();
       }
   }
 
   async handleDeleteProduct(event, data) {
       const response = await deleteProduct(data._id);
-      if(response) {
+      if (response) {
           this.getProductData();
       }
   }
 
   async handleDeleteSupplier(event, data) {
       const response = await deleteSupplier(data._id);
-      if(response) {
+      if (response) {
           this.getSupplierData();
       }
   }
@@ -81,7 +81,7 @@ class Home extends React.Component{
 
     const response = await createCustomer(customerData);
 
-    if(response) {
+    if (response) {
         this.getCustomerData();
         this.setState({activeIndexCustomers: 1});
     }
@@ -103,11 +103,11 @@ class Home extends React.Component{
 
       const response = await createProduct(productData);
 
-      if(response) {
+      if (response) {
           this.getProductData();
           this.setState({activeIndexProducts: 1});
       } else {
-          this.setState({ showErrorMessageQuantity: true });
+          this.setState({ showErrorMessage: true });
       }
   }
 
@@ -127,7 +127,7 @@ class Home extends React.Component{
 
       const response = await createSupplier(supplierData);
 
-      if(response) {
+      if (response) {
           this.getSupplierData();
           this.setState({activeIndexSuppliers: 1})
       }
@@ -166,7 +166,7 @@ class Home extends React.Component{
   async handleIncreaseProduct(event, data) {
       event.preventDefault();
       const response = await increaseProduct(data._id);
-      if(response) {
+      if (response) {
           this.getProductData();
       }
   }
@@ -174,7 +174,7 @@ class Home extends React.Component{
   async handleDecreaseProduct(event, data) {
       event.preventDefault();
       const response = await decreaseProduct(data._id);
-      if(response) {
+      if (response) {
           this.getProductData();
       }
   }
@@ -322,6 +322,7 @@ class Home extends React.Component{
                 { menuItem: 'Produkt anlegen', render: () => <Tab.Pane>
                   <Form onSubmit={this.handleCreateProduct.bind(this)}>
                     <h2 className="head-label">Neues Produkt anlegen</h2>
+                    {this.state.showErrorMessage ? <Message negative><p>Daten fehlerhaft!</p></Message> : null}
                     <div className="">
                       <span className="input-label">Bezeichnung</span>
                       <Input required className="input-text"  placeholder="Bezeichnung"/>
@@ -345,7 +346,6 @@ class Home extends React.Component{
                     <div className="input-fields">
                       <span className="input-label">Anzahl</span>
                       <Input className="input-text"  placeholder="Anzahl"/>
-                      {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
                     </div>
                     <div className="input-fields">
                       <span className="input-label">Einkaufspreis</span>

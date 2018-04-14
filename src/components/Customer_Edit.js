@@ -29,7 +29,7 @@ class EditCustomer extends Component {
   }
 
   handleChange(event, data) {
-      switch(data) {
+      switch (data) {
           case "firstName": this.setState({"firstName": event.target.value}); break;
           case "lastName": this.setState({"lastName": event.target.value}); break;
           case "street": this.setState({"street": event.target.value}); break;
@@ -55,7 +55,7 @@ class EditCustomer extends Component {
       }
       const response = await updateCustomer(customerData);
 
-      if(response) {
+      if (response) {
           window.location.href = '/';
       } 
   }

@@ -30,7 +30,7 @@ class EditSupplier extends Component {
   }
 
   handleChange(event, data) {
-      switch(data) {
+      switch (data) {
           case "company": this.setState({"company": event.target.value}); break;
           case "firstName": this.setState({"firstName": event.target.value}); break;
           case "lastName": this.setState({"lastName": event.target.value}); break;
@@ -58,7 +58,7 @@ class EditSupplier extends Component {
       }
       const response = await updateSupplier(supplierData);
 
-      if(response) {
+      if (response) {
           window.location.href = '/';
       } 
   }

@@ -13,7 +13,7 @@ class EditProduct extends Component {
       this.state = {
           productId: this.props.location.query.item._id,
           productData: [],
-          showErrorMessageQuantity: false
+          showErrorMessage: false
       }
       this.getProduct();
   }
@@ -32,7 +32,7 @@ class EditProduct extends Component {
   }
 
   handleChange(event, data) {
-      switch(data) {
+      switch (data) {
           case "title": this.setState({"title": event.target.value}); break;
           case "year": this.setState({"year": event.target.value}); break;
           case "location": this.setState({"location": event.target.value}); break;
@@ -62,10 +62,10 @@ class EditProduct extends Component {
       const response = await updateProduct(productData);
       this.setState({statusUpdateProduct: response});
 
-      if(response) {
+      if (response) {
           window.location.href = '/';
       } else {
-          this.setState({ showErrorMessageQuantity: true });
+          this.setState({ showErrorMessage: true });
       }
     
   }
@@ -91,6 +91,7 @@ class EditProduct extends Component {
             <Image id="product-view" size="tiny" src={wineImage} />
               <Form onSubmit={((e) => this.handleUpdate(e))}>
                 <h2 className="head-label">Bestehendes Produkt bearbeiten</h2>
+                {this.state.showErrorMessage ? <Message negative><p>Daten fehlerhaft!</p></Message> : null}
                 <div className="">
                   <span className="input-label">Bezeichnung</span>
                   <Input required className="input-text"  placeholder={this.state.title} value={this.state.title} onChange={(e) => this.handleChange(e,"title")}/>
@@ -114,7 +115,6 @@ class EditProduct extends Component {
                 <div className="input-fields">
                   <span className="input-label">Anzahl</span>
                   <Input className="input-text" placeholder={this.state.quantity} value={this.state.quantity} onChange={(e) => this.handleChange(e,"quantity")}/>
-                  {this.state.showErrorMessageQuantity ? <Message negative><p>"Anzahl" muss eine positive Zahl sein!</p></Message> : null}
                 </div>
                 <div className="input-fields">
                   <span className="input-label">Einkaufspreis</span>
