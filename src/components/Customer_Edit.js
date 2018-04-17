@@ -57,7 +57,7 @@ class EditCustomer extends Component {
 
       if (response) {
           window.location.href = '/';
-      } 
+      }
   }
 
   handleCancelUpdate(event) {
@@ -82,33 +82,37 @@ class EditCustomer extends Component {
               <h2 className="head-label">Einen bestehenden Kunden bearbeiten</h2>
               <div className="input-fields">
                 <span className="input-label">Vorname</span>
-                <Input required placeholder={this.state.firstName} value={this.state.firstName} 
+                <Input required className="input-text" placeholder={this.state.firstName} value={this.state.firstName}
                     onChange={(e) => this.handleChange(e,"firstName")}/>
-                <span className="input-label-inline" >Nachname</span>
-                <Input required className="input-text" placeholder={this.state.lastName} value={this.state.lastName} 
+              </div>
+              <div className="input-fields">
+                <span className="input-label" >Nachname</span>
+                <Input required className="input-text" placeholder={this.state.lastName} value={this.state.lastName}
                     onChange={(e) => this.handleChange(e,"lastName")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Straße und Hausnr.</span>
-                <Input className="input-text" placeholder={this.state.street} value={this.state.street} 
+                <Input className="input-text" placeholder={this.state.street} value={this.state.street}
                     onChange={(e) => this.handleChange(e,"street")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Postleitzahl</span>
-                <Input placeholder={this.state.postcode} value={this.state.postcode} 
+                <Input className="input-text" placeholder={this.state.postcode} value={this.state.postcode}
                     onChange={(e) => this.handleChange(e,"postcode")}/>
-                  <span className="input-label-inline" >Ort</span>
-                  <Input className="input-text" placeholder={this.state.city} value={this.state.city} 
+                </div>
+                <div className="input-fields">
+                  <span className="input-label" >Ort</span>
+                  <Input className="input-text" placeholder={this.state.city} value={this.state.city}
                       onChange={(e) => this.handleChange(e,"city")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Land</span>
-                <Input className="input-text" placeholder={this.state.country} value={this.state.country} 
+                <Input className="input-text" placeholder={this.state.country} value={this.state.country}
                     onChange={(e) => this.handleChange(e,"country")}/>
               </div>
               <div className="input-fields">
                 <span className="input-label">Telefonnummer</span>
-                <Input className="input-text" placeholder={this.state.phoneNumber} value={this.state.phoneNumber} 
+                <Input className="input-text" placeholder={this.state.phoneNumber} value={this.state.phoneNumber}
                     onChange={(e) => this.handleChange(e,"phoneNumber")}/>
               </div>
               <div className="input-fields">

@@ -19,6 +19,7 @@ class Pricelist extends Component {
   async getSupplier() {
       const supplierData = await getSupplierById(this.props.location.query.item._id);
       this.setState({supplierData: supplierData});
+
       if (supplierData.company !== "") {
           this.setState({showCompany: true});
       }
@@ -44,10 +45,62 @@ class Pricelist extends Component {
             <Button id="button-back">Zurück</Button>
             </Link>
           <div className="ui segment">
-            {this.state.showCompany ? 
-              <h2 className="head-label"> Preisliste Firma {this.state.supplierData.company}</h2> : 
-              <h2 className="head-label"> Preisliste {this.state.supplierData.firstName} {this.state.supplierData.lastName}</h2> 
+            {this.state.showCompany ?
+              <h2 className="head-label"> Preisliste Firma {this.state.supplierData.company}</h2> :
+              <h2 className="head-label"> Preisliste {this.state.supplierData.firstName} {this.state.supplierData.lastName}</h2>
             }
+            <div className="pricelist-product">
+                <div>
+                  <span className="detail-label"> Bezeichnung: </span>
+                  <span className="label-content">Metzinger Hofsteige </span>
+                </div>
+                <div >
+                  <span className="detail-label"> Jahrgang: </span>
+                  <span className="label-content"> 2016 </span>
+                </div>
+                <div>
+                  <span className="detail-label"> Lage: </span>
+                  <span className="label-content"> Weinsteige </span>
+                </div>
+                <div>
+                  <span className="detail-label"> Region: </span>
+                  <span className="label-content"> Würrtemberg </span>
+                </div>
+                <div>
+                  <span className="detail-label"> Land: </span>
+                  <span className="label-content"> Deutschland </span>
+                </div>
+                <div>
+                  <span className="detail-label"> Preis: </span>
+                  <span className="label-content"> 10,99€ </span>
+                </div>
+              </div>
+              <div className="pricelist-product">
+                  <div>
+                    <span className="detail-label"> Bezeichnung: </span>
+                    <span className="label-content">Metzinger Hofsteige </span>
+                  </div>
+                  <div >
+                    <span className="detail-label"> Jahrgang: </span>
+                    <span className="label-content"> 2016 </span>
+                  </div>
+                  <div>
+                    <span className="detail-label"> Lage: </span>
+                    <span className="label-content"> Weinsteige </span>
+                  </div>
+                  <div>
+                    <span className="detail-label"> Region: </span>
+                    <span className="label-content"> Würrtemberg </span>
+                  </div>
+                  <div>
+                    <span className="detail-label"> Land: </span>
+                    <span className="label-content"> Deutschland </span>
+                  </div>
+                  <div>
+                    <span className="detail-label"> Preis: </span>
+                    <span className="label-content"> 10,99€ </span>
+                  </div>
+                </div>
           </div>
         </div>
       </div>
